@@ -10,7 +10,7 @@ function Navbar() {
     navigate("/");
   };
   const handleProduct = () => {
-    navigate("/compte");
+    navigate("/project");
   };
   const handleDetail = () => {
     navigate("/detail");
@@ -79,6 +79,7 @@ function Navbar() {
               fontWeight={"bold"}
               onClick={handleAcceuil}
               variant="text"
+              color="success"
               style={{
                 color: PALETTE_COLORS.main,
               }}
@@ -90,8 +91,8 @@ function Navbar() {
             <Box
               sx={{
                 borderBottom:
-                  location.pathname === "/compte"
-                    ? "3px solid #5a189a"
+                  location.pathname === "/project"
+                    ? `3px solid ${PALETTE_COLORS.main}`
                     : "none",
               }}
             >
@@ -111,7 +112,7 @@ function Navbar() {
               sx={{
                 borderBottom:
                   location.pathname === "/detail"
-                    ? "3px solid #5a189a"
+                    ? `3px solid ${PALETTE_COLORS.main}`
                     : "none",
               }}
             >
@@ -132,7 +133,9 @@ function Navbar() {
           <Box
             sx={{
               borderBottom:
-                location.pathname === "/cours" ? "3px solid #5a189a" : "none",
+                location.pathname === "/cours"
+                  ? `3px solid ${PALETTE_COLORS.main}`
+                  : "none",
             }}
           >
             <Button
@@ -154,10 +157,9 @@ function Navbar() {
               <Button
                 fontFamily={"monospace"}
                 fontWeight={"bold"}
-                sx={{ color: PALETTE_COLORS.main }}
+                sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
                 variant="text"
                 startIcon={<PersonIcon />}
-                boxShadow={2}
               >
                 Hiditra
               </Button>

@@ -1,5 +1,11 @@
+import ProjectDetails from "../../../components/Project";
+
 function Project() {
-  return <></>;
+  return (
+    <>
+      <ProjectDetails />
+    </>
+  );
 }
 
 export default Project;

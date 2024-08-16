@@ -3,12 +3,13 @@ import About from "./pages/view/about/About.jsx";
 import ClientLayout from "./layout/ClientLayout.jsx";
 import Home from "./pages/view/home/Home.jsx";
 import LoginLayout from "./layout/LoginLayout.jsx";
-import Project from "./pages/connexion/register/Project.jsx";
 import DashboardLayout from "./layout/DashboardLayout.jsx";
 import CrudProject from "./pages/dashboard/projectCrud/CrudProject.jsx";
 import UserStatistic from "./pages/dashboard/userStatistic/UserStatistic.jsx";
 import Login from "./pages/connexion/auth-page/Login.jsx";
 import SingUp3 from "./pages/connexion/auth-page/SingUp.jsx";
+import Project from "./pages/view/home/Project.jsx";
+import ShowProject from "./components/ShowProject.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<ClientLayout />}>
           <Route index element={<Home />} />
           <Route path="project" element={<Project />} />
+          <Route path="show" element={<ShowProject />} />
           <Route path="about" element={<About />} />
         </Route>
         <Route path="/dashboard" element={<DashboardLayout />}>

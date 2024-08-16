@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         main: "#95C732",
-        second:"#EBCC20",
+        second: "#EBCC20",
         firstLowOpacity: "#03214cc0",
         white: "#ffff",
         black: "#3e3f40",

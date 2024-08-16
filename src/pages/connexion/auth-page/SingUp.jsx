@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -67,7 +67,7 @@ const validationSchema = yup.object({
 });
 function SingUp3() {
   const auth = "useAuthTemp()";
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked] = useState(false);
   const classes = useStyles();
 
   const submitFormData = async (values) => {
@@ -149,7 +149,6 @@ function SingUp3() {
         <div
           style={{
             width: 350,
-            height: isChecked ? 500 : 600,
             overflow: "hidden",
             borderRadius: 10,
             boxShadow: "5px 20px 50px #000",
@@ -157,6 +156,7 @@ function SingUp3() {
             backgroundColor: "white",
             border: `${PALETTE_COLORS.main} solid 4px`,
             marginRight: "18vw",
+            paddingBottom: 8,
           }}
         >
           <input
@@ -165,7 +165,6 @@ function SingUp3() {
             aria-hidden="true"
             style={{ display: "none" }}
             checked={isChecked}
-            // onChange={() => setIsChecked(!isChecked)}
           />
           <div
             className="signup"
@@ -188,143 +187,6 @@ function SingUp3() {
               Inscription
             </label>
             <form onSubmit={formik.handleSubmit}>
-              <Grid
-                container
-                justifyContent={"center"}
-                alignItems={"center"}
-                my={2.5}
-                style={{
-                  opacity: !isChecked ? 1 : 0,
-                  transition: ".8s ease-in-out",
-                }}
-              >
-                <Box borderRadius={1} width={"70%"}>
-                  <TextField
-                    label="Nom"
-                    className={classes.textField}
-                    variant="outlined"
-                    color="success"
-                    sx={{ bgcolor: "white", borderRadius: 1, zIndex: 0 }}
-                    size="small"
-                    fullWidth
-                    id="lastName"
-                    name="lastName"
-                    value={formik.values.lastName}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={
-                      formik.touched.lastName && Boolean(formik.errors.lastName)
-                    }
-                    helperText={
-                      formik.touched.lastName && formik.errors.lastName
-                    }
-                  />
-                </Box>
-              </Grid>
-              <Grid
-                container
-                justifyContent={"center"}
-                alignItems={"center"}
-                my={2.5}
-                style={{
-                  opacity: !isChecked ? 1 : 0,
-                  transition: ".8s ease-in-out",
-                }}
-              >
-                <Box borderRadius={1} width={"70%"}>
-                  <TextField
-                    label="Prenom"
-                    className={classes.textField}
-                    fullWidth
-                    id="firstName"
-                    name="firstName"
-                    variant="outlined"
-                    color="success"
-                    sx={{ bgcolor: "white", borderRadius: 1, zIndex: 0 }}
-                    size="small"
-                    value={formik.values.firstName}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={
-                      formik.touched.firstName &&
-                      Boolean(formik.errors.firstName)
-                    }
-                    helperText={
-                      formik.touched.firstName && formik.errors.firstName
-                    }
-                  />
-                </Box>
-              </Grid>
-              <Grid
-                container
-                justifyContent={"center"}
-                alignItems={"center"}
-                my={2.5}
-                style={{
-                  opacity: !isChecked ? 1 : 0,
-                  transition: ".8s ease-in-out",
-                }}
-              >
-                <Box borderRadius={1} width={"70%"}>
-                  <TextField
-                    label="Salaire mensuelle"
-                    className={classes.textField}
-                    fullWidth
-                    variant="outlined"
-                    color="secondary"
-                    sx={{ bgcolor: "white", borderRadius: 1, zIndex: 0 }}
-                    size="small"
-                    id="netMonthlySalary"
-                    name="netMonthlySalary"
-                    value={formik.values.netMonthlySalary}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    error={
-                      formik.touched.netMonthlySalary &&
-                      Boolean(formik.errors.netMonthlySalary)
-                    }
-                    helperText={
-                      formik.touched.netMonthlySalary &&
-                      formik.errors.netMonthlySalary
-                    }
-                  />
-                </Box>
-              </Grid>
-              <Grid
-                container
-                justifyContent={"center"}
-                alignItems={"center"}
-                my={2.5}
-                style={{
-                  opacity: !isChecked ? 1 : 0,
-                  transition: ".8s ease-in-out",
-                }}
-              >
-                <Box borderRadius={1} width={"70%"}>
-                  <TextField
-                    label="Date de naissance"
-                    type="date"
-                    className={classes.textField}
-                    fullWidth
-                    id="dateDeN"
-                    name="dateDeN"
-                    value={formik.values.dateDeN}
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    error={
-                      formik.touched.dateDeN && Boolean(formik.errors.dateDeN)
-                    }
-                    helperText={formik.touched.dateDeN && formik.errors.dateDeN}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    variant="outlined"
-                    color="secondary"
-                    sx={{ bgcolor: "white", borderRadius: 1, zIndex: 0 }}
-                    size="small"
-                  />
-                </Box>
-              </Grid>
               <Grid
                 container
                 justifyContent={"center"}
@@ -500,7 +362,19 @@ function SingUp3() {
                 Submit
               </Button>
             </form>
-            <Grid container justifyContent={"center"}>
+            <Grid container justifyContent={"center"} my={2}>
+              <Link to={"login"}>
+                <Typography
+                  color={PALETTE_COLORS.second}
+                  sx={{ textDecoration: "underline" }}
+                  variant="body2"
+                  fontWeight={"bold"}
+                >
+                  Hiditra amin`i kaonty Google <Google fontSize="small" />
+                </Typography>
+              </Link>
+            </Grid>
+            <Grid container justifyContent={"center"} my={2}>
               <Link to={"login"}>
                 <Typography
                   color={PALETTE_COLORS.second}
@@ -512,7 +386,7 @@ function SingUp3() {
                 </Typography>
               </Link>
             </Grid>
-            <Grid container justifyContent={"center"}>
+            <Grid container justifyContent={"center"} my={2}>
               <Link to={"/"}>
                 <Typography
                   color={PALETTE_COLORS.second}
