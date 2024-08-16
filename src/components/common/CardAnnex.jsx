@@ -16,7 +16,7 @@ function CardAnnex(props) {
         boxShadow={"0  0  10px"}
         mb={2}
         borderRadius={3}
-        overflow={'hidden'}
+        overflow={"hidden"}
       >
         <Grid
           maxHeight={"23vh"}
@@ -25,7 +25,7 @@ function CardAnnex(props) {
           overflow={"hidden"}
           position={"relative"}
         >
-            <img src={datas.imgPath} alt="" />
+          <img src={datas.imgPath} alt="" />
 
           <Grid
             position={"absolute"}

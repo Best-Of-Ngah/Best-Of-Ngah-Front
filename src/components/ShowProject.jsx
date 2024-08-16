@@ -5,13 +5,14 @@ import TableSpec from "./common/TableSpec";
 
 const test2 = img;
 const pojectSpecs = [
-    {
-      id: 1,
-      description: "blablabla dkfkdjdfkd",
-      dateRealisation: "aujourd hui",
-      imgPath: test2,
-      owner: "rakoto",
-    }];
+  {
+    id: 1,
+    description: "blablabla dkfkdjdfkd",
+    dateRealisation: "aujourd hui",
+    imgPath: test2,
+    owner: "rakoto",
+  },
+];
 const projects = [
   {
     id: 1,
@@ -70,7 +71,7 @@ function ShowProject() {
           >
             <img src={img} alt="imag" />
           </Grid>
-          <Grid container sm={5}alignContent={'flex-start'} pt={2}>
+          <Grid container sm={5} alignContent={"flex-start"} pt={2}>
             <Grid container justifyContent={"center"}>
               <Typography variant="h3" fontWeight={"bold"}>
                 Tetikasa

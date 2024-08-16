@@ -6,7 +6,7 @@ function Descrit() {
       <Grid container m={5} boxShadow={5} p={3} borderRadius={3}>
         <Grid container justifyContent={"center"}>
           <Typography variant="h3" fontWeight={"bold"}>
-            Foton-kevitra 
+            Foton-kevitra
           </Typography>
         </Grid>
         <Grid

@@ -111,7 +111,7 @@ function ProjectDetails() {
         ))}
       </Grid>
 
-      <Grid container p={3} justifyContent={'center'}>
+      <Grid container p={3} justifyContent={"center"}>
         <Pagination count={10} showFirstButton showLastButton />
       </Grid>
     </>

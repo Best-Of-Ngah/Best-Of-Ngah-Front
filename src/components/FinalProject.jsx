@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import Card from "./Card";
 import img from "../assets/images/descit.jpg";
 
-const test2 = img
+const test2 = img;
 
 const projects = [
   {
@@ -52,7 +52,7 @@ function FinalProject() {
   return (
     <>
       <Grid container m={5}>
-        <Grid container justifyContent={'center'}>
+        <Grid container justifyContent={"center"}>
           <Typography variant="h3" fontWeight={"bold"}>
             Tetikasa farany
           </Typography>

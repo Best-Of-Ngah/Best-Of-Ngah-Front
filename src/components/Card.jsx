@@ -20,7 +20,7 @@ const Card = (props) => {
       }}
     >
       <Link href="#" underline="none">
-        <Grid container height={"35vh"} overflow={'hidden'}>
+        <Grid container height={"35vh"} overflow={"hidden"}>
           <Box
             component="img"
             src={data.imgPath}
@@ -68,7 +68,9 @@ const Card = (props) => {
                 backgroundColor: PALETTE_COLORS.second,
               },
             }}
-            onClick={()=>{navigate("/show")}}
+            onClick={() => {
+              navigate("/show");
+            }}
           >
             Hijery
           </Button>

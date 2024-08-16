@@ -156,7 +156,7 @@ function SingUp3() {
             backgroundColor: "white",
             border: `${PALETTE_COLORS.main} solid 4px`,
             marginRight: "18vw",
-            paddingBottom:8
+            paddingBottom: 8,
           }}
         >
           <input
@@ -370,7 +370,7 @@ function SingUp3() {
                   variant="body2"
                   fontWeight={"bold"}
                 >
-                  Hiditra amin`i kaonty Google <Google fontSize="small"/>
+                  Hiditra amin`i kaonty Google <Google fontSize="small" />
                 </Typography>
               </Link>
             </Grid>

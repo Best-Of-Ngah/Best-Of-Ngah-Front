@@ -16,12 +16,16 @@ const ClientLayout = () => {
           left={"97vw"}
           width={"2vw"}
           overflow={"hidden"}
-          justifyContent={'center'}
+          justifyContent={"center"}
           borderRadius={" 9px 0 0 9px "}
           bgcolor={PALETTE_COLORS.main}
-          sx={{opacity:0.7}}
+          sx={{ opacity: 0.7 }}
         >
-          <Button variant="texte" size="small" sx={{fontWeight:"bold", color:"white"}}>
+          <Button
+            variant="texte"
+            size="small"
+            sx={{ fontWeight: "bold", color: "white" }}
+          >
             H <br /> a<br />n<br />o<br />m<br />e <br /> <br /> f<br />a
             <br />n
             <br />a
