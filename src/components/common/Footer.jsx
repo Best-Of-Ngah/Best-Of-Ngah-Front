@@ -21,118 +21,164 @@ function Footer() {
           justifyContent={"space-around"}
           alignItems={"flex-start"}
         >
-          <Stack>
-            <Typography variant="h5" color={"back"}>
-              <InfoIcon /> INFORMEZ-VOUS
+          <Stack spacing={1.5}>
+            <Typography variant="h6" color="textPrimary">
+              <InfoIcon fontSize="small" /> INFORMEZ-VOUS
             </Typography>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Qui sommes nous
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white, 
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Iza moa izahay
             </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Conditions générales de vente
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Fangatahana fiaraha-miasa
             </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Pour demande de partenariat
-            </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Politique de Confidentialité
-            </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Achats groupés à zéro intérêt?
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Politique de Confidentialité
             </Link>
           </Stack>
-          <Stack>
-            <Typography variant="h5" color={"back"}>
-              <AssignmentIcon /> BON A SAVOIR
+
+          <Stack spacing={1.5}>
+            <Typography variant="h6" color="textPrimary">
+              <AssignmentIcon fontSize="small" /> TSARA HO FANTATRA
             </Typography>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Quantifier mon surface à carreler
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Quantifier mon surface à carreler
             </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Conditions générales de vente
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Fepetra ankapobeny momba ny varotra
             </Link>
           </Stack>
-          <Stack>
-            <Typography variant="h5" color={"back"}>
-              <ContactsIcon />
-              RELATION CLIENT
+
+          <Stack spacing={1.5}>
+            <Typography variant="h6" color="textPrimary">
+              <HomeRepairServiceIcon fontSize="small" /> TOLOTRA
             </Typography>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              lowes@gmail.com
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Ekipa teknika
             </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Telma: 034 xx xxx xx
-            </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Airtel: 033 xx xxx xx
-            </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Orange: 032 xx xxx xx
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Fanarenana ankapobeny
             </Link>
           </Stack>
-          <Stack>
-            <Typography variant="h5" color={"back"}>
-              <HomeRepairServiceIcon />
-              SERVICES
+
+          <Stack spacing={1.5}>
+            <Typography variant="h6" color="textPrimary">
+              <ContactsIcon fontSize="small" /> FIFANDRAISANA
             </Typography>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Equipe technique
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; lowes@gmail.com
             </Link>
-            <Link color="inherit" underline="hover">
-              <span style={{ marginRight: "4px", fontSize: "12px" }}>
-                &bull;
-              </span>
-              Recouvrementonditions générales
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Telma: 034 xx xxx xx
+            </Link>
+            <Link
+              color="inherit"
+              underline="hover"
+              sx={{
+                "&:hover": {
+                  color: PALETTE_COLORS.white,
+                  textDecoration: "none",
+                },
+              }}
+            >
+              &bull; Orange: 032 xx xxx xx
             </Link>
           </Stack>
         </Grid>
       </Grid>
+
       <footer
         style={{
           backgroundColor: "#000",
           color: "#fff",
-          padding: "5px 0",
+          padding: "10px 0",
           textAlign: "center",
           width: "100%",
         }}
       >
-        <p>© Hackathon 2024</p>
+        <Typography variant="body2">
+          © Hackathon 2024
+        </Typography>
       </footer>
     </>
   );
