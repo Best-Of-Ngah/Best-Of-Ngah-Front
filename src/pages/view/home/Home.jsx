@@ -1,5 +1,5 @@
-import CarouselItem from "../../components/CarouselItem.jsx";
-import Carousel from "../../components/carousel.jsx";
+import Carousel from "../../../components/Carousel.jsx";
+import CarouselItem from "../../../components/CarouselItem.jsx";
 
 const Slide = ({ number }) => (
   <div>
