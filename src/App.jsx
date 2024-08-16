@@ -8,7 +8,7 @@ import Register from "./pages/connexion/register/Register.jsx";
 import Project from "./pages/connexion/register/Project.jsx";
 import DashboardLayout from "./layout/DashboardLayout.jsx";
 import CrudProject from "./pages/dashboard/projectCrud/CrudProject.jsx";
-import UserStatistic from "./pages/dashboard/userStatistic/UserStatistic.jsx";
+import { UserStatistic } from "./pages/dashboard/userStatistic/UserStatistic.jsx";
 
 function App() {
   return (

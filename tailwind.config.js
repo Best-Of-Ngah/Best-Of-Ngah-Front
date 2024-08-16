@@ -4,18 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        firstColor: "#03224c",
+        main: "#95C732",
         firstLowOpacity: "#03214cc0",
-        white: "#f4f4f4",
+        white: "#ffff",
         black: "#3e3f40",
       },
       fontFamily: {
         tnrm: ["Times New Roman", "serif"],
       },
       backgroundImage: {
-        loginbg: "url('/public/bg.jpg')",
+        loginbg: "url('/src/assets/bg.jpg')",
       },
     },
   },
-  //plugins: [require("daisyui")],
+  plugins: [],
 };

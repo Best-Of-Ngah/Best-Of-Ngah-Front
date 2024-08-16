@@ -1,7 +1,7 @@
 const CrudProject = () => {
   return (
     <>
-      <div>This is Crud Project</div>
+      <div className="">This is Crud Project</div>
     </>
   );
 };
