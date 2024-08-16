@@ -4,21 +4,49 @@ function Descrit() {
   return (
     <>
       <Grid container m={5} boxShadow={5} p={3} borderRadius={3}>
-        <Grid container item sm={5}>
-          <Grid container justifyContent={"center"}>
-            <Typography variant="h4">Ny Tontolontsika dia :</Typography>
-          </Grid>
-          <Typography textAlign={"c"} variant="caption">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
-            consequatur veritatis ea labore itaque, ullam quis eaque voluptate.
-            Eaque ipsa similique vero quod ea suscipit dolorum quia, fuga
-            dolorem ipsam.
+        <Grid container justifyContent={"center"}>
+          <Typography variant="h3" fontWeight={"bold"}>
+            Foton-kevitra 
           </Typography>
         </Grid>
         <Grid
           container
           item
-          sm={7}
+          sm={6}
+          justifyContent={"center"}
+          alignContent={"center"}
+          p={8}
+        >
+          <Typography variant="body2">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
+            consequatur veritatis ea labore itaque, ullam quis eaque voluptate.
+            Eaque ipsa similique vero quod ea suscipit dolorum quia, fuga
+            dolorem ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Eveniet consequatur veritatis ea labore itaque, ullam quis
+            eaque voluptate. Eaque ipsa similique vero quod ea suscipit dolorum
+            quia, fuga dolorem ipsam. Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Eveniet consequatur veritatis ea labore itaque,
+            ullam quis eaque voluptate. Eaque ipsa similique vero quod ea
+            suscipit dolorum quia, fuga dolorem ipsam. Lorem ipsum dolor, sit
+            amet consectetur adipisicing elit. Eveniet consequatur veritatis ea
+            labore itaque, ullam quis eaque voluptate. Eaque ipsa similique vero
+            quod ea suscipit dolorum quia, fuga dolorem ipsam. Lorem ipsum
+            dolor, sit amet consectetur adipisicing elit. Eveniet consequatur
+            veritatis ea labore itaque, ullam quis eaque voluptate. Eaque ipsa
+            similique vero quod ea suscipit dolorum quia, fuga dolorem ipsam.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
+            consequatur veritatis ea labore itaque, ullam quis eaque voluptate.
+            Eaque ipsa similique vero quod ea suscipit dolorum quia, fuga
+            dolorem ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Eveniet consequatur veritatis ea labore itaque, ullam quis
+            eaque voluptate. Eaque ipsa similique vero quod ea suscipit dolorum
+            quia, fuga dolorem ipsam.
+          </Typography>
+        </Grid>
+        <Grid
+          container
+          item
+          sm={6}
           overflow={"hidden"}
           justifyContent={"center"}
         >

@@ -1,32 +1,38 @@
-import { Link, Typography, Box, Button } from "@mui/material";
+import { Link, Typography, Box, Button, Grid } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { PALETTE_COLORS } from "../constant/palette";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router";
 
-const Card = () => {
+const Card = (props) => {
+  const data = props.data;
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
-        maxWidth: 500,
+        maxWidth: 400,
         height: 400,
         backgroundColor: "white",
-        border: "1px solid",
+        boxShadow: 5,
         borderColor: "gray.200",
         borderRadius: 2,
-        boxShadow: 1,
         overflow: "hidden",
       }}
     >
       <Link href="#" underline="none">
-        <Box
-          component="img"
-          src="/docs/images/blog/image-1.jpg"
-          alt="Noteworthy technology acquisitions 2021"
-          sx={{
-            width: "100%",
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 8,
-          }}
-        />
+        <Grid container height={"35vh"} overflow={'hidden'}>
+          <Box
+            component="img"
+            src={data.imgPath}
+            width={"100%"}
+            alt="Noteworthy technology acquisitions 2021"
+            sx={{
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+              overflow: "hidden",
+            }}
+          />
+        </Grid>
       </Link>
       <Box sx={{ p: 2 }}>
         <Link href="#" underline="none">
@@ -39,7 +45,7 @@ const Card = () => {
               mb: 1,
             }}
           >
-            Noteworthy technology acquisitions 2021
+            {data.owner}
           </Typography>
         </Link>
         <Typography
@@ -49,25 +55,34 @@ const Card = () => {
             mb: 2,
           }}
         >
-          Here are the biggest enterprise technology acquisitions of 2021 so
-          far, in reverse chronological order.
+          {data.description}
         </Typography>
-        <Button
-          variant="contained"
-          endIcon={<ArrowForwardIcon />}
-          href="#"
-          sx={{
-            "backgroundColor": PALETTE_COLORS.second,
-            "&:hover": {
-              backgroundColor: PALETTE_COLORS.second,
-            },
-          }}
-        >
-          Read more
-        </Button>
+        <Grid container justifyContent={"flex-end"}>
+          <Button
+            variant="contained"
+            endIcon={<ArrowForwardIcon />}
+            href="#"
+            sx={{
+              "backgroundColor": PALETTE_COLORS.second,
+              "&:hover": {
+                backgroundColor: PALETTE_COLORS.second,
+              },
+            }}
+            onClick={()=>{navigate("/show")}}
+          >
+            Hijery
+          </Button>
+        </Grid>
       </Box>
     </Box>
   );
+};
+Card.propTypes = {
+  data: PropTypes.shape({
+    imgPath: PropTypes.string.isRequired,
+    owner: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Card;
