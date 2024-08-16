@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import About from "./pages/about/About.jsx";
+import Login from "./pages/connexion/login/Login.jsx";
+import About from "./pages/view/about/About.jsx";
 import ClientLayout from "./layout/ClientLayout.jsx";
-import Home from "./pages/home/Home.jsx";
+import Home from "./pages/view/home/Home.jsx";
 import LoginLayout from "./layout/LoginLayout.jsx";
-import Register from "./pages/register/Register.jsx";
-import Project from "./pages/register/Project.jsx";
+import Register from "./pages/connexion/register/Register.jsx";
+import Project from "./pages/connexion/register/Project.jsx";
 import DashboardLayout from "./layout/DashboardLayout.jsx";
-import CrudProject from "./pages/projectCrud/CrudProject.jsx";
-import UserStatistic from "./pages/userStatistic/UserStatistic.jsx";
+import CrudProject from "./pages/dashboard/projectCrud/CrudProject.jsx";
+import UserStatistic from "./pages/dashboard/userStatistic/UserStatistic.jsx";
 
 function App() {
   return (
