@@ -11,20 +11,9 @@ interface Row {
   name: string;
   value: any;
 }
-interface Props {
+interface data {
   id: number;
   name: string;
-  description: string;
-  brand: string;
-  model: string;
-  price: number;
-  color: string;
-  motorType: string;
-  type: string;
-  power: number;
-  placeNumber: number;
-  status: string;
-  images: string;
 }
 
 function createData(name: string, value: string): Row {
