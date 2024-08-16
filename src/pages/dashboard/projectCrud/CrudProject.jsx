@@ -17,6 +17,14 @@ const createProject = async (formData) => {
   });
 };
 
+const updateProject = async (formData) => {
+  return axios.put(`${API_URL}/${formData.get("projectId")}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
 export default function CrudProject() {
   const [projects, setProjects] = useState([]);
   const [editProject, setEditProject] = useState(null);
@@ -44,8 +52,13 @@ export default function CrudProject() {
     setIsEditing(true);
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete project with ID:", id);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${API_URL}/${id}`);
+      loadProjects();
+    } catch (error) {
+      console.error("Error deleting project:", error);
+    }
   };
 
   const handleCreate = () => {
@@ -65,27 +78,25 @@ export default function CrudProject() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formData = new FormData();
-    formData.append("projectId", editProject.id);
+    formData.append("projectId", editProject.id || '');
     formData.append("typeId", editProject.typeId);
     formData.append("userId", editProject.userId);
     formData.append("status", editProject.status);
     formData.append("budget", editProject.budget);
     formData.append("description", editProject.description);
-    formData.append("requestDate", new Date(editProject.requestDate).toISOString());
-    formData.append("realisationDate", new Date(editProject.realisationDate).toISOString());
-    formData.append("file", editProject.file);
-
+    formData.append("requestDate", new Date(editProject.requestDate).toISOString().slice(0, -1) + 'Z');
+    formData.append("realisationDate", new Date(editProject.realisationDate).toISOString().slice(0, -1) + 'Z');
+    if (editProject.file) {
+      formData.append("file", editProject.file);
+    }
+  
     try {
       if (isCreating) {
         await createProject(formData);
       } else {
-        await axios.put(`${API_URL}`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await updateProject(formData);
       }
       loadProjects();
       setIsEditing(false);
@@ -95,6 +106,7 @@ export default function CrudProject() {
       console.error("Error updating or creating project:", error);
     }
   };
+  
 
   return (
     <Grid container minHeight={"90vh"} position="relative">
@@ -201,27 +213,27 @@ export default function CrudProject() {
             </thead>
             <tbody>
               {projects.map((project) => (
-                <tr key={project.id} className="border-b border-gray-200">
-                  <td className="px-4 py-2">{project.id}</td>
-                  <td className="px-4 py-2">{project.status ? "Active" : "Inactive"}</td>
-                  <td className="px-4 py-2">{project.budget}</td>
-                  <td className="px-4 py-2">{project.description}</td>
-                  <td className="px-4 py-2">{new Date(project.requestDate).toLocaleString()}</td>
-                  <td className="px-4 py-2">{new Date(project.realisationDate).toLocaleString()}</td>
-                  <td className="px-4 py-2">
-                    {project.file && (
-                      <a href={project.file} target="_blank" rel="noopener noreferrer">
-                        View Image
+                <tr key={project.id}>
+                  <td className="px-4 py-2 border-b">{project.id}</td>
+                  <td className="px-4 py-2 border-b">{project.status ? "Yes" : "No"}</td>
+                  <td className="px-4 py-2 border-b">{project.budget}</td>
+                  <td className="px-4 py-2 border-b">{project.description}</td>
+                  <td className="px-4 py-2 border-b">{new Date(project.requestDate).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b">{new Date(project.realisationDate).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b">
+                    {project.file ? (
+                      <a href={`http://localhost:8086/files/${project.file}`} target="_blank" rel="noopener noreferrer">
+                        View
                       </a>
-                    )}
+                    ) : "No file"}
                   </td>
-                  <td className="px-4 py-2">{new Date(project.createdAt).toLocaleString()}</td>
-                  <td className="px-4 py-2">{new Date(project.updatedAt).toLocaleString()}</td>
-                  <td className="px-4 py-2">
-                    <IconButton color="primary" onClick={() => handleEdit(project)}>
+                  <td className="px-4 py-2 border-b">{new Date(project.createdAt).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b">{new Date(project.updatedAt).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b">
+                    <IconButton onClick={() => handleEdit(project)} color="primary">
                       <Edit />
                     </IconButton>
-                    <IconButton color="secondary" onClick={() => handleDelete(project.id)}>
+                    <IconButton onClick={() => handleDelete(project.id)} color="secondary">
                       <Delete />
                     </IconButton>
                   </td>
@@ -229,30 +241,28 @@ export default function CrudProject() {
               ))}
             </tbody>
           </table>
-          <div className="mt-4 flex justify-between">
+          <div className="flex justify-between mt-4">
             <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(currentPage - 1)}
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+              disabled={currentPage === 1}
             >
               Previous
             </button>
             <button
-              onClick={() => setCurrentPage(currentPage + 1)}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
               className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
             >
               Next
             </button>
           </div>
-          <div className="mt-4">
-            <button
-              onClick={handleCreate}
-              className="bg-main text-white px-4 py-2 rounded hover:bg-green-700"
-            >
-              Add Project
-            </button>
-          </div>
         </div>
+        <button
+          onClick={handleCreate}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4"
+        >
+          <Add /> Add New Project
+        </button>
       </div>
     </Grid>
   );
