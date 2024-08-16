@@ -37,11 +37,6 @@ const TableSpec: React.FC<any> = ({ data }: any) => {
     createData("Daty", "22/01/2025"),
     createData("Ora", "08:00"),
     createData("Toerana", "Anosy"),
-    // createData("", data.type),
-    // createData("Moto type", data.motorType),
-    // createData("Power", data.power + " cv"),
-    // createData("Number place", data.placeNumber),
-    // createData("Gingerbread", data.name),
   ];
 
   return (
