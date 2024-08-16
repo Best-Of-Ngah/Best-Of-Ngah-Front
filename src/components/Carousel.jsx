@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/carousel.css";
+import { Grid } from "@mui/material";
 
 const Carousel = ({ children }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,21 +51,22 @@ const Carousel = ({ children }) => {
   };
 
   return (
-    <div
+    <Grid
+      border={"red soldi 2px"}
       className="carousel"
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <div
+      <Grid
         className="inner"
         style={{ transform: `translateX(-${activeIndex * 100}%)` }}
       >
         {React.Children.map(children, (child) => {
           return React.cloneElement(child, { width: "100%" });
         })}
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
