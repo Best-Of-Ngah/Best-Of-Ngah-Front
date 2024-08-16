@@ -18,9 +18,6 @@ function Navbar() {
   const handleRate = () => {
     navigate("/cours");
   };
-  const handleApropos = () => {
-    navigate("/apropos");
-  };
   return (
     <>
       <Grid
@@ -153,7 +150,7 @@ function Navbar() {
         </Stack>
         <Stack direction="row" spacing={5} alignItems={"center"}>
           <Grid bgcolor={"white"} borderRadius={2}>
-            <Link to={`/inscription`}>
+            <Link to={`/connexion`}>
               <Button
                 fontFamily={"monospace"}
                 fontWeight={"bold"}
