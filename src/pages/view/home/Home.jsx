@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import Bannier from "../../../components/Bannier.jsx";
 import Descrit from "../../../components/Descrit.jsx";
+import Carousel from "../../../components/Carousel.jsx";
 
 // const Slide = ({ number }) => (
 //   <div>
@@ -20,31 +21,9 @@ const Home = () => {
         </Grid>
       </Grid>
 
-      {/* <div>
-        <Carousel>
-          <CarouselItem>
-            <Slide number={1} />
-          </CarouselItem>
-          <CarouselItem>
-            <Slide number={2} />
-          </CarouselItem>
-          <CarouselItem>
-            <Slide number={3} />
-          </CarouselItem>
-          <CarouselItem>
-            <Slide number={4} />
-          </CarouselItem>
-          <CarouselItem>
-            <Slide number={5} />
-          </CarouselItem>
-          <CarouselItem>
-            <Slide number={6} />
-          </CarouselItem>
-          <CarouselItem>
-            <Slide number={7} />
-          </CarouselItem>
-        </Carousel>
-      </div> */}
+      <Grid container p={5}>
+        <Carousel />
+      </Grid>
     </>
   );
 };
