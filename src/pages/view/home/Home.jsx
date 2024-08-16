@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import Bannier from "../../../components/Bannier.jsx";
 import Descrit from "../../../components/Descrit.jsx";
 import Carousel from "../../../components/Carousel.jsx";
+import Donate from "../../../components/modal/Donate.jsx";
 
 // const Slide = ({ number }) => (
 //   <div>
@@ -23,6 +24,9 @@ const Home = () => {
 
       <Grid container p={5}>
         <Carousel />
+      </Grid>
+      <Grid container>
+        <Donate />
       </Grid>
     </>
   );
