@@ -3,7 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import { LocalFlorist } from "@mui/icons-material";
 import { PALETTE_COLORS } from "../../constant/palette";
+import ModalApp from "./modal/ModalAppoint";
+import { useState } from "react";
 function Navbar() {
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const handleAcceuil = () => {
@@ -12,14 +15,12 @@ function Navbar() {
   const handleProduct = () => {
     navigate("/project");
   };
-  const handleDetail = () => {
-    navigate("/detail");
-  };
   const handleRate = () => {
     navigate("/cours");
   };
   return (
     <>
+      <ModalApp open={open} setOpen={setOpen} />
       <Grid
         borderTop={`${PALETTE_COLORS.main} solid 4px`}
         container
@@ -108,26 +109,6 @@ function Navbar() {
                 Tetikasa
               </Button>
             </Box>
-            <Box
-              sx={{
-                borderBottom:
-                  location.pathname === "/detail"
-                    ? `3px solid ${PALETTE_COLORS.main}`
-                    : "none",
-              }}
-            >
-              <Button
-                fontFamily={"monospace"}
-                fontWeight={"bold"}
-                onClick={handleDetail}
-                variant="text"
-                style={{
-                  color: PALETTE_COLORS.main,
-                }}
-              >
-                Hifandray aminay
-              </Button>
-            </Box>
           </>
 
           <Box
@@ -141,13 +122,15 @@ function Navbar() {
             <Button
               fontFamily={"monospace"}
               fontWeight={"bold"}
-              onClick={handleRate}
               variant="text"
               sx={{
                 color: PALETTE_COLORS.main,
               }}
+              onClick={() => {
+                setOpen(true);
+              }}
             >
-              Mombamomba
+              Hifandray aminay
             </Button>
           </Box>
         </Stack>
@@ -162,6 +145,19 @@ function Navbar() {
                 startIcon={<PersonIcon />}
               >
                 Hiditra
+              </Button>
+            </Link>
+          </Grid>
+          <Grid bgcolor={"white"} borderRadius={2}>
+            <Link to={`/connexion`}>
+              <Button
+                fontFamily={"monospace"}
+                fontWeight={"bold"}
+                sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
+                variant="text"
+                startIcon={<PersonIcon />}
+              >
+                Anangana Tetikasa
               </Button>
             </Link>
           </Grid>

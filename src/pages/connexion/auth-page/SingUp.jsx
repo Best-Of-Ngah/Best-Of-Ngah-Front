@@ -17,6 +17,7 @@ import loginBg from "../../../assets/images/descit.jpg";
 import { makeStyles } from "@mui/styles";
 import { PALETTE_COLORS } from "../../../constant/palette";
 import { Link } from "react-router-dom";
+import GoogleAuth from "../../../components/common/GoogleAuth.jsx";
 const useStyles = makeStyles({
   textField: {
     // width: "100%",
@@ -69,6 +70,7 @@ function SingUp3() {
   const auth = "useAuthTemp()";
   const [isChecked] = useState(false);
   const classes = useStyles();
+  const [,setUser] = useState("")
 
   const submitFormData = async (values) => {
     console.log("Submitting form data model");
@@ -363,16 +365,7 @@ function SingUp3() {
               </Button>
             </form>
             <Grid container justifyContent={"center"} my={2}>
-              <Link to={"login"}>
-                <Typography
-                  color={PALETTE_COLORS.second}
-                  sx={{ textDecoration: "underline" }}
-                  variant="body2"
-                  fontWeight={"bold"}
-                >
-                  Hiditra amin`i kaonty Google <Google fontSize="small" />
-                </Typography>
-              </Link>
+              <GoogleAuth setUser={setUser} />
             </Grid>
             <Grid container justifyContent={"center"} my={2}>
               <Link to={"login"}>

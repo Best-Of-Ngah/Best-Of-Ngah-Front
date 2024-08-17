@@ -1,9 +1,7 @@
 import { Grid } from "@mui/material";
 import Bannier from "../../../components/Bannier.jsx";
 import Descrit from "../../../components/Descrit.jsx";
-import Carousel from "../../../components/Carousel.jsx";
 import FinalProject from "../../../components/FinalProject.jsx";
-import Donate from "../../../components/modal/Donate.jsx";
 
 const Home = () => {
   return (
@@ -17,9 +15,6 @@ const Home = () => {
         </Grid>
         <Grid container>
           <FinalProject />
-        </Grid>
-        <Grid>
-          <Donate />
         </Grid>
       </Grid>
     </>

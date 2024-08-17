@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -17,6 +17,7 @@ import loginBg from "../../../assets/images/descit.jpg";
 import { makeStyles } from "@mui/styles";
 import { PALETTE_COLORS } from "../../../constant/palette";
 import { Link } from "react-router-dom";
+import GoogleAuth from "../../../components/common/GoogleAuth";
 const useStyles = makeStyles({
   textField: {
     // width: "100%",
@@ -298,6 +299,9 @@ function Login() {
                 Submit
               </Button>
             </form>
+            <Grid container justifyContent={"center"} my={2}>
+              <GoogleAuth setUser={setUser}/>
+            </Grid>
             <Grid container justifyContent={"center"}>
               <Link to={"/connexion"}>
                 <Typography

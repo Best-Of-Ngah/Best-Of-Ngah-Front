@@ -3,10 +3,15 @@ import { Button, Grid } from "@mui/material";
 import Navbar from "../components/common/Navbar.jsx";
 import Footer from "../components/common/Footer.jsx";
 import { PALETTE_COLORS } from "../constant/palette.js";
+import { useState } from "react";
+import ModalApp from "../components/common/modal/ModalAppoint.jsx";
 
 const ClientLayout = () => {
+  const [open, setOpen] = useState(false);
+  const [,setAuth] = useState(false);
   return (
     <>
+      <ModalApp open={open} setOpen={setOpen} />
       <Grid container alignContent={"flex-start"}>
         <Grid
           container
@@ -25,6 +30,9 @@ const ClientLayout = () => {
             variant="texte"
             size="small"
             sx={{ fontWeight: "bold", color: "white" }}
+            onClick={() => {
+              setOpen(true);
+            }}
           >
             H <br /> a<br />n<br />o<br />m<br />e <br /> <br /> f<br />a
             <br />n

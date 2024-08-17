@@ -10,27 +10,30 @@ import Login from "./pages/connexion/auth-page/Login.jsx";
 import SingUp3 from "./pages/connexion/auth-page/SingUp.jsx";
 import Project from "./pages/view/home/Project.jsx";
 import ShowProject from "./components/ShowProject.jsx";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/connexion" element={<LoginLayout />}>
-          <Route index element={<SingUp3 />} />
-          <Route path="login" element={<Login />} />
-        </Route>
-        <Route path="/" element={<ClientLayout />}>
-          <Route index element={<Home />} />
-          <Route path="project" element={<Project />} />
-          <Route path="show" element={<ShowProject />} />
-          <Route path="about" element={<About />} />
-        </Route>
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<CrudProject />} />
-          <Route path="statistic" element={<UserStatistic />} />
-        </Route>
-      </Routes>
-    </Router>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+      <Router>
+        <Routes>
+          <Route path="/connexion" element={<LoginLayout />}>
+            <Route index element={<SingUp3 />} />
+            <Route path="login" element={<Login />} />
+          </Route>
+          <Route path="/" element={<ClientLayout />}>
+            <Route index element={<Home />} />
+            <Route path="project" element={<Project />} />
+            <Route path="show" element={<ShowProject />} />
+            <Route path="about" element={<About />} />
+          </Route>
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<CrudProject />} />
+            <Route path="statistic" element={<UserStatistic />} />
+          </Route>
+        </Routes>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 
