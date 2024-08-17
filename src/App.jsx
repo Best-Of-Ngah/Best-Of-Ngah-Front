@@ -30,6 +30,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<CrudProject />} />
             <Route path="statistic" element={<UserStatistic />} />
+            <Route path="project" element={<CrudProject />} />
           </Route>
         </Routes>
       </Router>
