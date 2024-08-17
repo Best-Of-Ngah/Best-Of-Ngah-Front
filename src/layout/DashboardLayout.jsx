@@ -54,7 +54,7 @@ export const DashboardLayout = (props) => {
         <Person />
         <p>UTILISATEUR</p>
       </Link>
-      <Link className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
+      <Link to={"dons"} className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
         <MonetizationOnSharp />
         <p>DONS</p>
       </Link>

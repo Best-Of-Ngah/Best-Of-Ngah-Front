@@ -12,6 +12,7 @@ import Project from "./pages/view/home/Project.jsx";
 import ShowProject from "./components/ShowProject.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import CrudUser from "./pages/dashboard/userStatistic/UserList.jsx";
+import CrudDon from "./pages/don/DonList.jsx";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route index element={<CrudProject />} />
             <Route path="users" element={<CrudUser/>} />
             <Route path="projects" element={<CrudProject />} />
+            <Route path="dons" element={<CrudDon/>} />
           </Route>
         </Routes>
       </Router>
