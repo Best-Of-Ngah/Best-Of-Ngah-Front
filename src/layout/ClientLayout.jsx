@@ -8,7 +8,7 @@ import ModalApp from "../components/common/modal/ModalAppoint.jsx";
 
 const ClientLayout = () => {
   const [open, setOpen] = useState(false);
-  const [,setAuth] = useState(false);
+  const [, setAuth] = useState(false);
   return (
     <>
       <ModalApp open={open} setOpen={setOpen} />

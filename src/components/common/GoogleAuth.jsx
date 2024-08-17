@@ -36,14 +36,16 @@ const GoogleAuth = ({ setUser }) => {
 
   return (
     <>
-      <Grid onClick={() => login()} sx={{ cursor: 'pointer' }}>
+      <Grid onClick={() => login()} sx={{ cursor: "pointer" }}>
         <Typography
           color={PALETTE_COLORS.second}
           sx={{ textDecoration: "underline" }}
           variant="body2"
           fontWeight={"bold"}
         >
-          {loading ? "Miandry..." : (
+          {loading ? (
+            "Miandry..."
+          ) : (
             <>
               {"Hiditra amin`i` kaonty Google"}
               <Google fontSize="small" />
@@ -51,9 +53,7 @@ const GoogleAuth = ({ setUser }) => {
           )}
         </Typography>
       </Grid>
-
     </>
-
   );
 };
 

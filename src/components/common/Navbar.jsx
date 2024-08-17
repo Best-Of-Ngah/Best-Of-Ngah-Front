@@ -3,8 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import { LocalFlorist } from "@mui/icons-material";
 import { PALETTE_COLORS } from "../../constant/palette";
-import ModalApp from "./modal/ModalAppoint";
+import ModalApp from "./modal/ModalApp";
 import { useState } from "react";
+import { useLocalStorage } from "../../utils/useLocalStorage";
 function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -14,9 +15,6 @@ function Navbar() {
   };
   const handleProduct = () => {
     navigate("/project");
-  };
-  const handleRate = () => {
-    navigate("/cours");
   };
   return (
     <>
@@ -144,22 +142,26 @@ function Navbar() {
                 variant="text"
                 startIcon={<PersonIcon />}
               >
-                Hiditra
+                Anangana Tetikasa
               </Button>
             </Link>
           </Grid>
           <Grid bgcolor={"white"} borderRadius={2}>
-            <Link to={`/connexion`}>
-              <Button
-                fontFamily={"monospace"}
-                fontWeight={"bold"}
-                sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
-                variant="text"
-                startIcon={<PersonIcon />}
-              >
-                Anangana Tetikasa
-              </Button>
-            </Link>
+            {value == null ? (
+              <Link to={`/connexion`}>
+                <Button
+                  fontFamily={"monospace"}
+                  fontWeight={"bold"}
+                  sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
+                  variant="text"
+                  startIcon={<PersonIcon />}
+                >
+                  Hiditra
+                </Button>
+              </Link>
+            ) : (
+              <PersonIcon />
+            )}
           </Grid>
         </Stack>
       </Grid>

@@ -23,8 +23,9 @@ const Card = (props) => {
         <Grid container height={"35vh"} overflow={"hidden"}>
           <Box
             component="img"
-            src={data.imgPath}
+            src={data.image}
             width={"100%"}
+            minWidth={"70vh"}
             alt="Noteworthy technology acquisitions 2021"
             sx={{
               borderTopLeftRadius: 8,
@@ -45,7 +46,7 @@ const Card = (props) => {
               mb: 1,
             }}
           >
-            {data.owner}
+            {data.requestDate}
           </Typography>
         </Link>
         <Typography
@@ -81,8 +82,8 @@ const Card = (props) => {
 };
 Card.propTypes = {
   data: PropTypes.shape({
-    imgPath: PropTypes.string.isRequired,
-    owner: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    requestDate: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
 };
