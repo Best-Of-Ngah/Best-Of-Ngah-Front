@@ -87,7 +87,12 @@ export default function CrudProject() {
     e.preventDefault();
 
     const formData = new FormData();
+<<<<<<< HEAD
     formData.append("projectId", editProject.id || "");
+=======
+
+    formData.append("projectId", editProject.id || '');
+>>>>>>> a04470ac7d71ae9fcf2ec2e9efdeb5e768fc8fad
     formData.append("typeId", editProject.typeId);
     formData.append("userId", editProject.userId);
     formData.append("status", editProject.status);
@@ -144,6 +149,24 @@ export default function CrudProject() {
                   type="text"
                   value={editProject.id}
                   readOnly
+                  className="border border-gray-300 p-2 rounded w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-600">Type ID</label>
+                <input
+                  type="text"
+                  value={editProject.typeId}
+                  onChange={(e) => setEditProject({ ...editProject, typeId: e.target.value })}
+                  className="border border-gray-300 p-2 rounded w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-600">User ID</label>
+                <input
+                  type="text"
+                  value={editProject.userId}
+                  onChange={(e) => setEditProject({ ...editProject, userId: e.target.value })}
                   className="border border-gray-300 p-2 rounded w-full"
                 />
               </div>
@@ -248,6 +271,8 @@ export default function CrudProject() {
             <thead className="bg-main border-b border-gray-200">
               <tr>
                 <th className="px-4 py-2 text-left text-gray-600">ID</th>
+                <th className="px-4 py-2 text-left text-gray-600">Type ID</th>
+                <th className="px-4 py-2 text-left text-gray-600">User ID</th>
                 <th className="px-4 py-2 text-left text-gray-600">Status</th>
                 <th className="px-4 py-2 text-left text-gray-600">Budget</th>
                 <th className="px-4 py-2 text-left text-gray-600">
@@ -260,6 +285,7 @@ export default function CrudProject() {
                   Realisation Date
                 </th>
                 <th className="px-4 py-2 text-left text-gray-600">Image</th>
+<<<<<<< HEAD
                 <th className="px-4 py-2 text-left text-gray-600">
                   Created At
                 </th>
@@ -267,11 +293,17 @@ export default function CrudProject() {
                   Updated At
                 </th>
                 <th className="px-4 py-2 text-left text-gray-600"></th>
+=======
+                <th className="px-4 py-2 text-left text-gray-600">Created By</th>
+                <th className="px-4 py-2 text-left text-gray-600">Updated By</th>
+                <th className="px-4 py-2 text-left text-gray-600">Actions</th>
+>>>>>>> a04470ac7d71ae9fcf2ec2e9efdeb5e768fc8fad
               </tr>
             </thead>
             <tbody>
               {projects.map((project) => (
                 <tr key={project.id}>
+<<<<<<< HEAD
                   <td className="px-4 py-2 border-b">{project.id}</td>
                   <td className="px-4 py-2 border-b">
                     {project.status ? "Yes" : "No"}
@@ -308,6 +340,23 @@ export default function CrudProject() {
                       onClick={() => handleEdit(project)}
                       color="primary"
                     >
+=======
+                  <td className="px-4 py-2 border-b border-gray-200">{project.id}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.typeId}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.userId}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.status ? 'Active' : 'Inactive'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.budget}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.description}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{new Date(project.requestDate).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{new Date(project.realisationDate).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">
+                    {project.image && <img src={project.image} alt="Project" style={{ width: 100, height: 100 }} />}
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.createdBy}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.updatedBy}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">
+                    <IconButton onClick={() => handleEdit(project)} color="primary">
+>>>>>>> a04470ac7d71ae9fcf2ec2e9efdeb5e768fc8fad
                       <Edit />
                     </IconButton>
                     <IconButton
@@ -321,28 +370,29 @@ export default function CrudProject() {
               ))}
             </tbody>
           </table>
-          <div className="flex justify-between mt-4">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => setCurrentPage((prev) => prev + 1)}
-              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
-            >
-              Next
-            </button>
-          </div>
         </div>
-        <button
-          onClick={handleCreate}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4"
-        >
-          <Add /> Add New Project
-        </button>
+        <div className="flex justify-between mt-4">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+          >
+            Previous
+          </button>
+          <button
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
+          >
+            Next
+          </button>
+        </div>
+        <div className="mt-4">
+          <button
+            onClick={handleCreate}
+            className="bg-main text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Add Project
+          </button>
+        </div>
       </div>
     </Grid>
   );
