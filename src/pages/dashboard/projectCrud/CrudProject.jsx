@@ -263,13 +263,13 @@ export default function CrudProject() {
         <div className="flex justify-between mt-4">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
           >
             Previous
           </button>
           <button
             onClick={() => setCurrentPage((prev) => prev + 1)}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
           >
             Next
           </button>
@@ -277,7 +277,7 @@ export default function CrudProject() {
         <div className="mt-4">
           <button
             onClick={handleCreate}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+            className="bg-main text-white px-4 py-2 rounded hover:bg-green-700"
           >
             Add Project
           </button>
