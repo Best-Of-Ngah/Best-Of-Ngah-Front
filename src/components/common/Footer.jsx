@@ -30,7 +30,7 @@ function Footer() {
               underline="hover"
               sx={{
                 "&:hover": {
-                  color: PALETTE_COLORS.white, 
+                  color: PALETTE_COLORS.white,
                   textDecoration: "none",
                 },
               }}
@@ -176,9 +176,7 @@ function Footer() {
           width: "100%",
         }}
       >
-        <Typography variant="body2">
-          © Hackathon 2024
-        </Typography>
+        <Typography variant="body2">© Hackathon 2024</Typography>
       </footer>
     </>
   );

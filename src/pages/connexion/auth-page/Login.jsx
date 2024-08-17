@@ -13,10 +13,13 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import bgImg from "../../../assets/images/BgAcceuil1.png";
-import loginBg from "../../../assets/images/descit.jpg";
 import { makeStyles } from "@mui/styles";
 import { PALETTE_COLORS } from "../../../constant/palette";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UrlSite } from "../../../utils";
+import TosteSucces from "../../../components/common/toste/TosteSucces";
+import TosteError from "../../../components/common/toste/TosteErro";
+import { useLocalStorage } from "../../../utils/useLocalStorage";
 const useStyles = makeStyles({
   textField: {
     // width: "100%",
@@ -66,18 +69,15 @@ const validationSchema = yup.object({
     .required("Veuillez confirmer votre mot de passe"),
 });
 function Login() {
-  const auth = "useAuthTemp()";
-  const [isChecked, setIsChecked] = useState(false);
+  const { setValue } = useLocalStorage("token");
+  const [openSucces, setOpenSucces] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const submitFormData = async (values) => {
     console.log("Submitting form data model");
     const formData = new FormData();
-
-    formData.append("firstName", values.firstName);
-    formData.append("lastName", values.lastName);
-    formData.append("netMonthlySalary", values.netMonthlySalary);
-    formData.append("birthday", values.dateDeN);
     formData.append("email", values.email);
     formData.append("password", values.password);
 
@@ -90,7 +90,7 @@ function Login() {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "accounts/create",
+      url: UrlSite("sign-in"),
       headers: {
         "Content-Type": "application/json",
       },
@@ -102,24 +102,20 @@ function Login() {
       .then((response) => {
         console.log("anaty try");
         console.log(response);
-        auth.loginUserFront(response.data);
+        setValue(response.data);
+        setOpenSucces(true);
+        navigate("/");
       })
       .catch((error) => {
         console.log("anaty catch");
         console.error(error);
+        setOpenError(true);
       });
   };
   const formik = useFormik({
     initialValues: {
-      lastName: "",
-      firstName: "",
       email: "",
-      dateDeN: "",
-      netMonthlySalary: "",
       password: "",
-      ConfirmPassword: "",
-      showPassword: false,
-      showConfirmPassword: false,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -130,6 +126,16 @@ function Login() {
 
   return (
     <>
+      <TosteSucces
+        message={"Success"}
+        setOpen={setOpenSucces}
+        open={openSucces}
+      />
+      <TosteError
+        message={"Try again"}
+        setOpen={setOpenError}
+        open={openError}
+      />
       <div
         style={{
           margin: 0,
@@ -139,7 +145,7 @@ function Login() {
           alignItems: "center",
           minHeight: "99vh",
           fontFamily: "Jost, sans-serif",
-          backgroundImage: isChecked ? `url(${loginBg})` : `url(${bgImg})`,
+          backgroundImage: `url(${bgImg})`,
           backgroundPosition: "center",
           transition: " .8s ease-in-out",
           overflow: "hidden",
@@ -164,7 +170,6 @@ function Login() {
             id="chk"
             aria-hidden="true"
             style={{ display: "none" }}
-            checked={isChecked}
           />
           <div
             className="signup"
@@ -193,7 +198,6 @@ function Login() {
                 alignItems={"center"}
                 my={2.5}
                 style={{
-                  opacity: !isChecked ? 1 : 0,
                   transition: ".8s ease-in-out",
                 }}
               >
@@ -222,7 +226,6 @@ function Login() {
                 alignItems={"center"}
                 my={2.5}
                 style={{
-                  opacity: !isChecked ? 1 : 0,
                   transition: ".8s ease-in-out",
                 }}
               >

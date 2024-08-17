@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { Backup, CloudUpload, Google, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Backup, Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -16,9 +16,11 @@ import bgImg from "../../../assets/images/BgAcceuil1.png";
 import loginBg from "../../../assets/images/descit.jpg";
 import { makeStyles, styled } from "@mui/styles";
 import { PALETTE_COLORS } from "../../../constant/palette";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UrlSite } from "../../../utils";
 import { useLocalStorage } from "../../../utils/useLocalStorage";
+import TosteSucces from "../../../components/common/toste/TosteSucces";
+import TosteError from "../../../components/common/toste/TosteErro";
 const useStyles = makeStyles({
   textField: {
     // width: "100%",
@@ -56,10 +58,13 @@ const validationSchema = yup.object({
     .required("Veuillez confirmer votre mot de passe"),
 });
 function SingUp3() {
-  const { setValue}=useLocalStorage("token")
+  const [openSucces, setOpenSucces] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const { setValue } = useLocalStorage("tqttq");
   const [selectedImageRecto, setSelectedImageRecto] = useState(null);
   const [isChecked] = useState(false);
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const submitFormData = async (values) => {
     console.log("Submitting form data model");
@@ -81,9 +86,12 @@ function SingUp3() {
       .then((response) => {
         console.log("anaty try");
         console.log(response);
-        setValue(response.data)
+
+        setValue(response.data);
+        navigate("/");
       })
       .catch((error) => {
+        setOpenError(true);
         console.log("anaty catch");
         console.error(error);
       });
@@ -114,8 +122,19 @@ function SingUp3() {
     whiteSpace: "nowrap",
     width: 1,
   });
+
   return (
     <>
+      <TosteSucces
+        message={"Success"}
+        setOpen={setOpenSucces}
+        open={openSucces}
+      />
+      <TosteError
+        message={"Try again"}
+        setOpen={setOpenError}
+        open={openError}
+      />
       <div
         style={{
           margin: 0,
@@ -181,15 +200,14 @@ function SingUp3() {
                   alignItems={"flex-start"}
                 >
                   <Grid
-                    md={5}
+                    md={8}
                     container
                     direction={"column"}
+                    justifyContent={"center"}
+                    overflow={"hidden"}
                     sx={{
-                      mr: 1,
-                      p: 1,
                       border: "2px dotted grey",
-                      borderRadius: 4,
-                      justifyContent: "center",
+                      borderRadius: "50%",
                       alignItems: "center",
                     }}
                   >
@@ -200,9 +218,8 @@ function SingUp3() {
                         alignItems={"center"}
                         overflow={"hidden"}
                         sx={{
-                          mb: 1,
                           width: "100%",
-                          height: "20vh",
+                          // height: "20vh",
                           textAlign: "center",
                           borderRadius: 5,
                         }}
@@ -220,7 +237,6 @@ function SingUp3() {
                           textAlign={"center"}
                           variant="h4"
                           color={"#95c732"}
-                          mt={2}
                         >
                           UpLoad Photo
                         </Typography>
@@ -249,10 +265,11 @@ function SingUp3() {
 
                     <label htmlFor="recto-upload">
                       <Button
+                        sx={{ my: 2 }}
                         component="span"
                         style={{ color: "#EBCC24" }}
                         variant="outlined"
-                        startIcon={<CloudUpload />}
+                        // startIcon={<CloudUpload />}
                       >
                         {selectedImageRecto ? "Changer" : "Parcourir"}
                         <VisuallyHiddenInput type="file" />

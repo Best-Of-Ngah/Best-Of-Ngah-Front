@@ -17,30 +17,22 @@ function Descrit() {
           alignContent={"center"}
           p={8}
         >
-          <Typography variant="body2">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
-            consequatur veritatis ea labore itaque, ullam quis eaque voluptate.
-            Eaque ipsa similique vero quod ea suscipit dolorum quia, fuga
-            dolorem ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Eveniet consequatur veritatis ea labore itaque, ullam quis
-            eaque voluptate. Eaque ipsa similique vero quod ea suscipit dolorum
-            quia, fuga dolorem ipsam. Lorem ipsum dolor, sit amet consectetur
-            adipisicing elit. Eveniet consequatur veritatis ea labore itaque,
-            ullam quis eaque voluptate. Eaque ipsa similique vero quod ea
-            suscipit dolorum quia, fuga dolorem ipsam. Lorem ipsum dolor, sit
-            amet consectetur adipisicing elit. Eveniet consequatur veritatis ea
-            labore itaque, ullam quis eaque voluptate. Eaque ipsa similique vero
-            quod ea suscipit dolorum quia, fuga dolorem ipsam. Lorem ipsum
-            dolor, sit amet consectetur adipisicing elit. Eveniet consequatur
-            veritatis ea labore itaque, ullam quis eaque voluptate. Eaque ipsa
-            similique vero quod ea suscipit dolorum quia, fuga dolorem ipsam.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet
-            consequatur veritatis ea labore itaque, ullam quis eaque voluptate.
-            Eaque ipsa similique vero quod ea suscipit dolorum quia, fuga
-            dolorem ipsam. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Eveniet consequatur veritatis ea labore itaque, ullam quis
-            eaque voluptate. Eaque ipsa similique vero quod ea suscipit dolorum
-            quia, fuga dolorem ipsam.
+          <Typography variant="h6">
+            Ny teknolojia dizitaly dia manana anjara toerana lehibe amin`ny
+            fampiroboroboana ny fiainana, ny fiaraha-monina ary ny tontolo
+            iainana amin`ny alàlan`ny fanolorana vahaolana vaovao hiatrehana
+            ireo fanamby ankehitriny. Amin`ny alalan`ny fanangonana sy
+            famakafakana angon-drakitra goavana, ny teknolojia nomerika dia
+            ahafahan`ny fitantanana tsara kokoa ny loharanon-karena voajanahary,
+            mampitombo ny fanaraha-maso ny zavamananaina ary mamaly haingana
+            kokoa ny krizy ara-tontolo iainana. Ny fitaovana nomerika ihany koa
+            dia mampiroborobo ny fandraisan`anjaran`ny vondrom-piarahamonina
+            amin`ny alàlan`ny fanamorana ny fifandraisana sy ny fiaraha-miasa eo
+            amin`ny olom-pirenena, fikambanana ary mpanapa-kevitra. Amin`ny
+            fampidirana vahaolana nomerika amin`ny hetsika maharitra, dia afaka
+            mamorona fiaraha-miasa mahasoa izay manohana tsy ny fiarovana ny
+            planetantsika ihany fa ny fahasambaran`ny vondron`olombelona sy ny
+            tontolo iainana.
           </Typography>
         </Grid>
         <Grid

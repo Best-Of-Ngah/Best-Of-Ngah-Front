@@ -1,72 +1,52 @@
 import { Grid, Typography } from "@mui/material";
 import Card from "./Card";
-import img from "../assets/images/descit.jpg";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { UrlSite } from "../utils";
 
-const test2 = img;
-
-const projects = [
-  {
-    id: 1,
-    description: "blablabla dkfkdjdfkd",
-    dateRealisation: "aujourd hui",
-    imgPath: test2,
-    owner: "rakoto",
-  },
-  {
-    id: 2,
-    description: "blablabla okay",
-    dateRealisation: "amaray",
-    imgPath: test2,
-    owner: "rabe",
-  },
-  {
-    id: 3,
-    description: "blablabla dkfkdjdfkd",
-    dateRealisation: "darem",
-    imgPath: test2,
-    owner: "rabekoto",
-  },
-  {
-    id: 4,
-    description: "blablabla dkfkdjdfkd",
-    dateRealisation: "radem",
-    imgPath: test2,
-    owner: "kotorabe",
-  },
-  {
-    id: 5,
-    description: "blablabla dkfkdjdfkd",
-    dateRealisation: "aujourd hui",
-    imgPath: test2,
-    owner: "rakoto",
-  },
-  {
-    id: 6,
-    description: "blablabla dkfkdjdfkd",
-    dateRealisation: "aujourd hui",
-    imgPath: test2,
-    owner: "rakoto",
-  },
-];
 function FinalProject() {
-  return (
-    <>
-      <Grid container m={5}>
-        <Grid container justifyContent={"center"}>
-          <Typography variant="h3" fontWeight={"bold"}>
-            Tetikasa farany
-          </Typography>
+  const [load, setLoad] = useState(false);
+  const [project, setProject] = useState();
+  useEffect(() => {
+    axios
+      .get(
+        UrlSite(
+          `projects?page=1&size=10&propertyToSortBy=realisationDate&direction=asc`
+        )
+      )
+      .then((response) => {
+        setProject(response.data.items);
+        setLoad(true);
+        console.log(response.data.items);
+        console.log("okey azo region");
+      })
+      .catch((error) => {
+        setLoad(true);
+        console.error("tsy mandeha");
+        console.error(error);
+      });
+  }, []);
+  if (!load) {
+    return <h1>Attend</h1>;
+  } else
+    return (
+      <>
+        <Grid container m={5}>
+          <Grid container justifyContent={"center"}>
+            <Typography variant="h3" fontWeight={"bold"}>
+              Tetikasa farany
+            </Typography>
+          </Grid>
+          <Grid container>
+            {project.map((item) => (
+              <Grid key={item.id} container sm={4} p={2}>
+                <Card data={item} />
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
-        <Grid container>
-          {projects.map((item) => (
-            <Grid key={item.id} container sm={4} p={2}>
-              <Card data={item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>
-    </>
-  );
+      </>
+    );
 }
 
 export default FinalProject;

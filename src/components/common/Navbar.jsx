@@ -5,7 +5,9 @@ import { LocalFlorist } from "@mui/icons-material";
 import { PALETTE_COLORS } from "../../constant/palette";
 import ModalApp from "./modal/ModalApp";
 import { useState } from "react";
+import { useLocalStorage } from "../../utils/useLocalStorage";
 function Navbar() {
+  const { value } = useLocalStorage();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -146,17 +148,21 @@ function Navbar() {
             </Link>
           </Grid>
           <Grid bgcolor={"white"} borderRadius={2}>
-            <Link to={`/connexion`}>
-              <Button
-                fontFamily={"monospace"}
-                fontWeight={"bold"}
-                sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
-                variant="text"
-                startIcon={<PersonIcon />}
-              >
-                Hiditra
-              </Button>
-            </Link>
+            {value == null ? (
+              <Link to={`/connexion`}>
+                <Button
+                  fontFamily={"monospace"}
+                  fontWeight={"bold"}
+                  sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
+                  variant="text"
+                  startIcon={<PersonIcon />}
+                >
+                  Hiditra
+                </Button>
+              </Link>
+            ) : (
+              <PersonIcon />
+            )}
           </Grid>
         </Stack>
       </Grid>

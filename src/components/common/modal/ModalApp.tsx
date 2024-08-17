@@ -51,7 +51,7 @@ export default function ModalApp(props: any) {
       email: "",
       message: "",
       appointmentDate: "",
-      status: "PENDING"
+      status: "PENDING",
     },
   });
 
@@ -63,20 +63,20 @@ export default function ModalApp(props: any) {
       email: "",
       message: "",
       appointmentDate: "",
-      status: "PENDING"
+      status: "PENDING",
     });
-  }, [ reset]);
+  }, [reset]);
 
   const handleClose = () => setOpen(false);
 
   const formatAppointmentDate = (dateString: string): string => {
     const date = new Date(dateString);
     const year = date.getUTCFullYear();
-    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-    const day = date.getUTCDate().toString().padStart(2, '0');
-    const hours = date.getUTCHours().toString().padStart(2, '0');
-    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-    const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
+    const day = date.getUTCDate().toString().padStart(2, "0");
+    const hours = date.getUTCHours().toString().padStart(2, "0");
+    const minutes = date.getUTCMinutes().toString().padStart(2, "0");
+    const seconds = date.getUTCSeconds().toString().padStart(2, "0");
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
   };
 
@@ -87,10 +87,10 @@ export default function ModalApp(props: any) {
     const updatedFormData = { ...formData, appointmentDate: formattedDate };
 
     try {
-      const response = await axios.post(('appointments'), updatedFormData, {
+      const response = await axios.post("appointments", updatedFormData, {
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       });
       if (response.status === 200 || response.status === 201) {
         handleClose();
@@ -127,7 +127,12 @@ export default function ModalApp(props: any) {
               </IconButton>
             </Grid>
           </Grid>
-          <Typography variant="h5" fontWeight={'bold'} textAlign={"center"} fontFamily={"revert"}>
+          <Typography
+            variant="h5"
+            fontWeight={"bold"}
+            textAlign={"center"}
+            fontFamily={"revert"}
+          >
             Hifandray aminay
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
