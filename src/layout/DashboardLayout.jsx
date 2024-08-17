@@ -40,21 +40,21 @@ export const DashboardLayout = (props) => {
     <div>
       <Toolbar />
       <Divider />
-      <Link className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
+      <Link to={"statistic"}  className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
         <MovingIcon />
         <p>STATISTIQUE</p>
       </Link>
 
-      <Link className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
+      <Link to={"projects"} className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
         <Work />
         <p>PROJECT</p>
       </Link>
 
-      <Link className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
+      <Link to={"users"} className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
         <Person />
         <p>UTILISATEUR</p>
       </Link>
-      <Link className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
+      <Link to={"dons"} className="flex flex-row gap-6 px-4 py-5 text-main font-bold">
         <MonetizationOnSharp />
         <p>DONS</p>
       </Link>
@@ -65,8 +65,6 @@ export const DashboardLayout = (props) => {
       </Link>
     </div>
   );
-
-  // Remove this const when copying and pasting into your project.
   const container =
     window !== undefined ? () => window().document.body : undefined;
 

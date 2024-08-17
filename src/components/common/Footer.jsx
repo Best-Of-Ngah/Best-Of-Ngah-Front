@@ -1,4 +1,7 @@
 import { Grid, Link, Stack, Typography } from "@mui/material";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Importer les styles CSS d'AOS
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactsIcon from "@mui/icons-material/Contacts";
@@ -6,6 +9,11 @@ import AssignmentIcon from "@mui/icons-material/Assignment";
 import { PALETTE_COLORS } from "../../constant/palette";
 
 function Footer() {
+  useEffect(() => {
+    // Initialisation de AOS
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
     <>
       <Grid
@@ -14,6 +22,7 @@ function Footer() {
           backgroundImage: `linear-gradient(120deg, ${PALETTE_COLORS.main} 20%, ${PALETTE_COLORS.second} 80%)`,
         }}
         justifyContent={"center"}
+        data-aos="fade-up" // Animation sur le conteneur principal
       >
         <Grid
           container
@@ -21,7 +30,7 @@ function Footer() {
           justifyContent={"space-around"}
           alignItems={"flex-start"}
         >
-          <Stack spacing={1.5}>
+          <Stack spacing={1.5} data-aos="fade-right">
             <Typography variant="h6" color="textPrimary">
               <InfoIcon fontSize="small" /> INFORMEZ-VOUS
             </Typography>
@@ -63,7 +72,7 @@ function Footer() {
             </Link>
           </Stack>
 
-          <Stack spacing={1.5}>
+          <Stack spacing={1.5} data-aos="fade-right">
             <Typography variant="h6" color="textPrimary">
               <AssignmentIcon fontSize="small" /> TSARA HO FANTATRA
             </Typography>
@@ -93,7 +102,7 @@ function Footer() {
             </Link>
           </Stack>
 
-          <Stack spacing={1.5}>
+          <Stack spacing={1.5} data-aos="fade-right">
             <Typography variant="h6" color="textPrimary">
               <HomeRepairServiceIcon fontSize="small" /> TOLOTRA
             </Typography>
@@ -123,7 +132,7 @@ function Footer() {
             </Link>
           </Stack>
 
-          <Stack spacing={1.5}>
+          <Stack spacing={1.5} data-aos="fade-up">
             <Typography variant="h6" color="textPrimary">
               <ContactsIcon fontSize="small" /> FIFANDRAISANA
             </Typography>

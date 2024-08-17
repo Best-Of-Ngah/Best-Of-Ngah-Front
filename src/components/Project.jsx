@@ -1,14 +1,20 @@
 import { Grid, Pagination, Typography } from "@mui/material";
-import img from "../assets/images/descit.jpg";
-import Card from "./Card";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Importer les styles CSS d'AOS
+import img from "../assets/images/descit.jpg";
+import Card from "./Card";
 import { UrlSite } from "../utils";
 
 function ProjectDetails() {
   const [load, setLoad] = useState(false);
   const [project, setProject] = useState();
+
   useEffect(() => {
+    // Initialisation de AOS
+    AOS.init({ duration: 1000 });
+
     axios
       .get(
         UrlSite(
@@ -27,6 +33,7 @@ function ProjectDetails() {
         console.error(error);
       });
   }, []);
+
   if (!load) {
     return <h1>attend</h1>;
   } else
@@ -43,6 +50,7 @@ function ProjectDetails() {
             transition: "background-image 1s ease",
           }}
           overflow={"hidden"}
+          data-aos="fade-in" // Animation sur le conteneur principal
         >
           <Grid
             container
@@ -52,7 +60,7 @@ function ProjectDetails() {
             }}
           ></Grid>
         </Grid>
-        <Grid container pt={2} alignContent={"center"}>
+        <Grid container pt={2} alignContent={"center"} data-aos="fade-up">
           <Grid container justifyContent={"center"} px={3}>
             <Typography variant="h3" fontWeight={"bold"}>
               Tetikasa
@@ -61,13 +69,13 @@ function ProjectDetails() {
         </Grid>
         <Grid container>
           {project.map((item) => (
-            <Grid key={item.id} container sm={4} p={2}>
+            <Grid key={item.id} container sm={4} p={2} data-aos="zoom-in">
               <Card data={item} />
             </Grid>
           ))}
         </Grid>
 
-        <Grid container p={3} justifyContent={"center"}>
+        <Grid container p={3} justifyContent={"center"} data-aos="fade-up">
           <Pagination count={10} showFirstButton showLastButton />
         </Grid>
       </>

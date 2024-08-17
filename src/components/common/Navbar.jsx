@@ -12,12 +12,11 @@ import { LocalFlorist } from "@mui/icons-material";
 import { PALETTE_COLORS } from "../../constant/palette";
 import ModalApp from "./modal/ModalApp";
 import { useState } from "react";
-import ModalCreateProject from "./modal/ModalCreateProject";
 import { useLocalStorage } from "../../utils/useLocalStorage";
+import BasicMenu from "./Btn";
 function Navbar() {
   const { value } = useLocalStorage("token");
   const [open, setOpen] = useState(false);
-  const [opentwo, setOpentwo] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const handleAcceuil = () => {
@@ -26,12 +25,9 @@ function Navbar() {
   const handleProduct = () => {
     navigate("/project");
   };
-  console.log(value);
-
   return (
     <>
       <ModalApp open={open} setOpen={setOpen} />
-      <ModalCreateProject open={opentwo} setOpen={setOpentwo} />
       <Grid
         borderTop={`${PALETTE_COLORS.main} solid 4px`}
         container
@@ -82,7 +78,7 @@ function Navbar() {
             sx={{
               borderBottom:
                 location.pathname === "/"
-                  ? `3px solid ${PALETTE_COLORS.main} `
+                  ? `3px solid ${PALETTE_COLORS.main}`
                   : "none",
             }}
           >
@@ -146,21 +142,17 @@ function Navbar() {
           </Box>
         </Stack>
         <Stack direction="row" spacing={5} alignItems={"center"}>
-          <Grid bgcolor={"white"} borderRadius={2}>
-            <Button
-              fontFamily={"monospace"}
-              fontWeight={"bold"}
-              sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
-              variant="text"
-              startIcon={<PersonIcon />}
-              onClick={() => {
-                setOpentwo(true);
-              }}
-            >
-              Anangana Tetikasa
-            </Button>
+          <Grid container borderRadius={2}>
+            <Link to={`#`}>
+              <Button
+                sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
+                variant="text"
+              >
+                Anangana Tetikasa
+              </Button>
+            </Link>
           </Grid>
-          <Grid bgcolor={"white"} borderRadius={2}>
+          <Grid bgcolor={"white"} item sm={5} borderRadius={2}>
             {value == null ? (
               <Link to={`/connexion`}>
                 <Button
@@ -168,15 +160,19 @@ function Navbar() {
                   fontWeight={"bold"}
                   sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
                   variant="text"
-                  startIcon={<PersonIcon />}
                 >
                   Hiditra
                 </Button>
               </Link>
             ) : (
-              <IconButton sx={{boxShadow:2}}>
-                <PersonIcon color="success" style={{color:PALETTE_COLORS.second}} fontSize="large"/>
-              </IconButton>
+              <Button
+              fontFamily={"monospace"}
+              fontWeight={"bold"}
+              sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
+              variant="text"
+            >
+              <BasicMenu/>
+            </Button>
             )}
           </Grid>
         </Stack>

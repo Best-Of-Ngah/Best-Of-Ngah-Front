@@ -5,11 +5,14 @@ import Home from "./pages/view/home/Home.jsx";
 import LoginLayout from "./layout/LoginLayout.jsx";
 import DashboardLayout from "./layout/DashboardLayout.jsx";
 import CrudProject from "./pages/dashboard/projectCrud/CrudProject.jsx";
-import UserStatistic from "./pages/dashboard/userStatistic/UserStatistic.jsx";
+import UserStatistic from "./pages/dashboard/userStatistic/UserList.jsx";
 import Login from "./pages/connexion/auth-page/Login.jsx";
 import SingUp3 from "./pages/connexion/auth-page/SingUp.jsx";
 import Project from "./pages/view/home/Project.jsx";
 import ShowProject from "./components/ShowProject.jsx";
+import CrudUser from "./pages/dashboard/userStatistic/UserList.jsx";
+import CrudDon from "./pages/don/DonList.jsx";
+
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<CrudProject />} />
           <Route path="statistic" element={<UserStatistic />} />
+          <Route path="projects" element={<CrudProject />} />
+          <Route path="users" element={<CrudUser/>} />
+          <Route path="dons" element={<CrudDon />} />
         </Route>
       </Routes>
     </Router>

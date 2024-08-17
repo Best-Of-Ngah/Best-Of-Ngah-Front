@@ -3,36 +3,36 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Grid, TextField, IconButton, InputAdornment } from "@mui/material";
-import { Backup, Clear, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Grid, IconButton} from "@mui/material";
+import { Backup, Clear} from "@mui/icons-material";
 import axios from "axios";
 import { PALETTE_COLORS } from "../../../constant/palette";
-import { makeStyles, styled } from "@mui/styles";
+import {  styled } from "@mui/styles";
 import { useFormik } from "formik";
 import { useState } from "react";
 import { useLocalStorage } from "../../../utils/useLocalStorage";
 import { useNavigate } from "react-router";
 import { UrlSite } from "../../../utils";
 
-const useStyles = makeStyles({
-  textField: {
-    // width: "100%",
-    "& .MuiInputBase-root": {
-      height: "5vh",
-      fontSize: "0.8rem", // Taille du texte
-      padding: 0, // Espacement intérieur
-      borderRadius: "4px", // Bordure
-    },
-    "& .MuiInputLabel-root": {
-      fontSize: "0.8rem", // Taille du label
-      backgroundColor: "white",
-      padding: "0 10px",
-      marginLeft: "-5px",
-      borderRadius: 4,
-      zIndex: 2,
-    },
-  },
-});
+// const useStyles = makeStyles({
+//   textField: {
+//     // width: "100%",
+//     "& .MuiInputBase-root": {
+//       height: "5vh",
+//       fontSize: "0.8rem", // Taille du texte
+//       padding: 0, // Espacement intérieur
+//       borderRadius: "4px", // Bordure
+//     },
+//     "& .MuiInputLabel-root": {
+//       fontSize: "0.8rem", // Taille du label
+//       backgroundColor: "white",
+//       padding: "0 10px",
+//       marginLeft: "-5px",
+//       borderRadius: 4,
+//       zIndex: 2,
+//     },
+//   },
+// });
 const validationSchema = yup.object({
   email: yup
     .string("Veuillez entrer votre adresse e-mail")

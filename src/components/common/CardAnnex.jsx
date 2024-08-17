@@ -8,8 +8,8 @@ function CardAnnex(props) {
     <>
       <Grid
         container
-        minHeight={"36vh"}
-        maxHeight={"36vh"}
+        minHeight={"30vh"}
+        maxHeight={"30vh"}
         minWidth={"14vw"}
         maxWidth={"14vw"}
         alignContent={"flex-start"}

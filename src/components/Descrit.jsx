@@ -1,10 +1,26 @@
 import { Grid, Typography } from "@mui/material";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Importer les styles CSS d'AOS
 import bgImg from "../assets/images/descit.jpg";
+
 function Descrit() {
+  useEffect(() => {
+    // Initialisation de AOS
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
     <>
-      <Grid container m={5} boxShadow={5} p={3} borderRadius={3}>
-        <Grid container justifyContent={"center"}>
+      <Grid
+        container
+        m={5}
+        boxShadow={5}
+        p={3}
+        borderRadius={3}
+        data-aos="fade-up" // Animation lors du défilement
+      >
+        <Grid container justifyContent={"center"} data-aos="fade-up">
           <Typography variant="h3" fontWeight={"bold"}>
             Foton-kevitra
           </Typography>
@@ -16,6 +32,7 @@ function Descrit() {
           justifyContent={"center"}
           alignContent={"center"}
           p={8}
+          data-aos="fade-up"
         >
           <Typography variant="h6">
             Ny teknolojia dizitaly dia manana anjara toerana lehibe amin`ny
@@ -41,6 +58,7 @@ function Descrit() {
           sm={6}
           overflow={"hidden"}
           justifyContent={"center"}
+          data-aos="fade-left"
         >
           <Grid container justifyContent={"center"} alignContent={"center"}>
             <img src={bgImg} alt="" style={{ width: "80%", height: "80%" }} />

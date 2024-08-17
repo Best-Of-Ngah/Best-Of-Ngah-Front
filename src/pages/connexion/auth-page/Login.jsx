@@ -7,6 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+
 import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
@@ -55,9 +56,9 @@ const validationSchema = yup.object({
 });
 
 function Login() {
+  const [load, setLoad] = useState(false);
   const [openSucces, setOpenSucces] = useState(false);
   const [openError, setOpenError] = useState(false);
-  const [redirecte, setRedirect] = useState(false);
   const classes = useStyles();
   const navigate = useNavigate();
   const {setValue, value} = useLocalStorage('token');
@@ -81,8 +82,8 @@ function Login() {
       .then((response) => {
         setValue(response.data);
          console.log(value);
-         setRedirect(true)
-         setOpenSucces(true);
+        setOpenSucces(true);
+        setLoad(true)
         
       })
       .catch((error) => {
@@ -102,10 +103,9 @@ function Login() {
       submitFormData(values);
     },
   });
-  if (redirecte) {
-    navigate('/')
+  if (load) {
+    navigate("/");
   }
-
   return (
     <>
       <TosteSucces
@@ -171,7 +171,7 @@ function Login() {
                 transition: ".5s ease-in-out",
               }}
             >
-              Hiditra
+              Fidirana
             </label>
             <form onSubmit={formik.handleSubmit}>
               <Grid
@@ -185,7 +185,7 @@ function Login() {
               >
                 <Box borderRadius={1} width={"70%"}>
                   <TextField
-                    label="Email"
+                    label="Mailaka"
                     className={classes.textField}
                     variant="outlined"
                     color="secondary"
@@ -213,7 +213,7 @@ function Login() {
               >
                 <Box borderRadius={1} width={"70%"} position={"relative"}>
                   <TextField
-                    label="Mot de passe"
+                    label="Teny miafina"
                     className={classes.textField}
                     fullWidth
                     variant="outlined"
@@ -273,7 +273,7 @@ function Login() {
                   transition: ".2s ease-in",
                 }}
               >
-                Submit
+                Handefa
               </Button>
             </form>
             <Grid container justifyContent={"center"}>

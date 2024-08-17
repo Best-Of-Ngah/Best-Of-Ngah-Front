@@ -60,12 +60,12 @@ const validationSchema = yup.object({
 function SingUp3() {
   const [openSucces, setOpenSucces] = useState(false);
   const [openError, setOpenError] = useState(false);
-  const { setValue}=useLocalStorage("token")
+  const [load, setLoad] = useState(false);
+  const { setValue } = useLocalStorage("token");
   const [selectedImageRecto, setSelectedImageRecto] = useState(null);
   const [isChecked] = useState(false);
   const classes = useStyles();
   const navigate = useNavigate();
-
 
   const submitFormData = async (values) => {
     console.log("Submitting form data model");
@@ -87,12 +87,11 @@ function SingUp3() {
       .then((response) => {
         console.log("anaty try");
         console.log(response);
-     
-        setValue(response.data)
-        navigate("/")
+        setLoad(true);
+        setValue(response.data);
       })
       .catch((error) => {
-        setOpenError(true)
+        setOpenError(true);
         console.log("anaty catch");
         console.error(error);
       });
@@ -123,10 +122,12 @@ function SingUp3() {
     whiteSpace: "nowrap",
     width: 1,
   });
-  
+  if (load) {
+    navigate("/");
+  }
   return (
     <>
-    <TosteSucces
+      <TosteSucces
         message={"Success"}
         setOpen={setOpenSucces}
         open={openSucces}
@@ -190,7 +191,7 @@ function SingUp3() {
                 transition: ".5s ease-in-out",
               }}
             >
-              Hanoratra Anarana
+              Hiditra
             </label>
             <form onSubmit={formik.handleSubmit}>
               <>
@@ -204,11 +205,11 @@ function SingUp3() {
                     md={8}
                     container
                     direction={"column"}
-                    justifyContent={'center'}
-                    overflow={'hidden'}
+                    justifyContent={"center"}
+                    overflow={"hidden"}
                     sx={{
                       border: "2px dotted grey",
-                      borderRadius: "50%",
+                      borderRadius: "5%",
                       alignItems: "center",
                     }}
                   >
@@ -220,7 +221,6 @@ function SingUp3() {
                         overflow={"hidden"}
                         sx={{
                           width: "100%",
-                          // height: "20vh",
                           textAlign: "center",
                           borderRadius: 5,
                         }}
@@ -239,9 +239,9 @@ function SingUp3() {
                           variant="h4"
                           color={"#95c732"}
                         >
-                          UpLoad Photo
+                        Sary
                         </Typography>
-                        <Backup style={{ fontSize: "7vw", opacity: 0.5 }} />
+                        {/* <Backup style={{ fontSize: "7vw", opacity: 0.5 }} /> */}
                       </Grid>
                     )}
 
@@ -266,13 +266,12 @@ function SingUp3() {
 
                     <label htmlFor="recto-upload">
                       <Button
-                      sx={{my:2}}
+                        sx={{ my: 2 }}
                         component="span"
                         style={{ color: "#EBCC24" }}
                         variant="outlined"
-                        // startIcon={<CloudUpload />}
                       >
-                        {selectedImageRecto ? "Changer" : "Parcourir"}
+                        {selectedImageRecto ? "Hanova" : "Haka"}
                         <VisuallyHiddenInput type="file" />
                       </Button>
                     </label>

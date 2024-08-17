@@ -22,7 +22,9 @@ function createData(name: string, value: string): Row {
 
 const TableSpec: React.FC<any> = ({ data }: any) => {
   const rows: Row[] = [
-    createData("Tetikasa", data.type.name),
+    createData("Tetikasa", data.description),
+    createData("Sokajy", data.type.name),
+
     createData("Daty", data.realisationDate)
   ];
 
