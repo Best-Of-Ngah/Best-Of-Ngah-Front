@@ -388,7 +388,7 @@ export default function CrudProject() {
         <div className="mt-4">
           <button
             onClick={handleCreate}
-            className="bg-main text-white px-4 py-2 rounded hover:bg-green-700"
+            className="bg- text-white px-4 py-2 rounded hover:bg-green-700"
           >
             Add Project
           </button>
