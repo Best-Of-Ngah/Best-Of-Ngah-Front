@@ -153,7 +153,7 @@ export default function ModalApp(props: any) {
               size="small"
               sx={{ my: 1 }}
               fullWidth
-              label="Email"
+              label="Mailaka"
               {...register("email")}
               error={Boolean(errors.email)}
               helperText={errors.email?.message}
@@ -175,7 +175,7 @@ export default function ModalApp(props: any) {
                 sx={{ bgcolor: PALETTE_COLORS.second }}
                 type="submit"
               >
-                Send
+                Handefa
               </Button>
             </Grid>
           </form>

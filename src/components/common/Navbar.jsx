@@ -3,10 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import { LocalFlorist } from "@mui/icons-material";
 import { PALETTE_COLORS } from "../../constant/palette";
-import ModalApp from "./modal/ModalAppoint";
+import ModalApp from "./modal/ModalApp";
 import { useState } from "react";
 function Navbar() {
-  const [open ,setOpen]=useState(false)
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const handleAcceuil = () => {
@@ -15,12 +15,9 @@ function Navbar() {
   const handleProduct = () => {
     navigate("/project");
   };
-  const handleRate = () => {
-    navigate("/cours");
-  };
   return (
     <>
-      <ModalApp open={open} setOpen={setOpen}/>
+      <ModalApp open={open} setOpen={setOpen} />
       <Grid
         borderTop={`${PALETTE_COLORS.main} solid 4px`}
         container
@@ -126,7 +123,9 @@ function Navbar() {
               sx={{
                 color: PALETTE_COLORS.main,
               }}
-              onClick={()=>{setOpen(true)}}
+              onClick={() => {
+                setOpen(true);
+              }}
             >
               Hifandray aminay
             </Button>
@@ -142,7 +141,7 @@ function Navbar() {
                 variant="text"
                 startIcon={<PersonIcon />}
               >
-                Hiditra
+                Anangana Tetikasa
               </Button>
             </Link>
           </Grid>
@@ -155,7 +154,7 @@ function Navbar() {
                 variant="text"
                 startIcon={<PersonIcon />}
               >
-                Anangana Tetikasa
+                Hiditra
               </Button>
             </Link>
           </Grid>

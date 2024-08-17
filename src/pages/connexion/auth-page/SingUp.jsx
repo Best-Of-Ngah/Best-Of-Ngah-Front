@@ -8,15 +8,17 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { Google, Visibility, VisibilityOff } from "@mui/icons-material";
+import { Backup, CloudUpload, Google, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import bgImg from "../../../assets/images/BgAcceuil1.png";
 import loginBg from "../../../assets/images/descit.jpg";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, styled } from "@mui/styles";
 import { PALETTE_COLORS } from "../../../constant/palette";
 import { Link } from "react-router-dom";
+import { UrlSite } from "../../../utils";
+import { useLocalStorage } from "../../../utils/useLocalStorage";
 const useStyles = makeStyles({
   textField: {
     // width: "100%",
@@ -37,18 +39,6 @@ const useStyles = makeStyles({
   },
 });
 const validationSchema = yup.object({
-  firstName: yup
-    .string("Veuillez entrer votre nom")
-    .required("Le nom est obligatoire"),
-  lastName: yup
-    .string("Veuillez entrer votre nprénom")
-    .required("Le prénom est obligatoire"),
-  netMonthlySalary: yup
-    .number("Veuillez entrer votre salaire mensuelle")
-    .required("La salaire mensuelle est obligatoire"),
-  dateDeN: yup
-    .date("Format de date invalide")
-    .required("La date de naissance est obligatoire"),
   email: yup
     .string("Veuillez entrer votre adresse e-mail")
     .email("Veuillez entrer une adresse e-mail valide")
@@ -66,34 +56,23 @@ const validationSchema = yup.object({
     .required("Veuillez confirmer votre mot de passe"),
 });
 function SingUp3() {
-  const auth = "useAuthTemp()";
+  const { setValue}=useLocalStorage("token")
+  const [selectedImageRecto, setSelectedImageRecto] = useState(null);
   const [isChecked] = useState(false);
   const classes = useStyles();
 
   const submitFormData = async (values) => {
     console.log("Submitting form data model");
-    const formData = new FormData();
 
-    formData.append("firstName", values.firstName);
-    formData.append("lastName", values.lastName);
-    formData.append("netMonthlySalary", values.netMonthlySalary);
-    formData.append("birthday", values.dateDeN);
+    const formData = new FormData();
     formData.append("email", values.email);
     formData.append("password", values.password);
-
-    const object = {};
-    formData.forEach((value, key) => {
-      object[key] = value;
-    });
-    console.log(JSON.stringify(object));
+    formData.append("image", values.recto);
 
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "accounts/create",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      url: UrlSite("sign-up"),
       data: formData,
     };
 
@@ -102,7 +81,7 @@ function SingUp3() {
       .then((response) => {
         console.log("anaty try");
         console.log(response);
-        auth.loginUserFront(response.data);
+        setValue(response.data)
       })
       .catch((error) => {
         console.log("anaty catch");
@@ -111,12 +90,9 @@ function SingUp3() {
   };
   const formik = useFormik({
     initialValues: {
-      lastName: "",
-      firstName: "",
       email: "",
-      dateDeN: "",
-      netMonthlySalary: "",
       password: "",
+      recto: null,
       ConfirmPassword: "",
       showPassword: false,
       showConfirmPassword: false,
@@ -127,7 +103,17 @@ function SingUp3() {
       submitFormData(values);
     },
   });
-
+  const VisuallyHiddenInput = styled("input")({
+    clip: "rect(0 0 0 0)",
+    clipPath: "inset(50%)",
+    height: 1,
+    overflow: "hidden",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    whiteSpace: "nowrap",
+    width: 1,
+  });
   return (
     <>
       <div
@@ -187,6 +173,94 @@ function SingUp3() {
               Inscription
             </label>
             <form onSubmit={formik.handleSubmit}>
+              <>
+                <Grid
+                  container
+                  direction={"row"}
+                  justifyContent={"space-around"}
+                  alignItems={"flex-start"}
+                >
+                  <Grid
+                    md={5}
+                    container
+                    direction={"column"}
+                    sx={{
+                      mr: 1,
+                      p: 1,
+                      border: "2px dotted grey",
+                      borderRadius: 4,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    {selectedImageRecto && (
+                      <Grid
+                        container
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        overflow={"hidden"}
+                        sx={{
+                          mb: 1,
+                          width: "100%",
+                          height: "20vh",
+                          textAlign: "center",
+                          borderRadius: 5,
+                        }}
+                      >
+                        <img
+                          src={selectedImageRecto}
+                          alt="Uploaded"
+                          style={{ maxHeight: "23vh", borderRadius: "10px" }}
+                        />
+                      </Grid>
+                    )}
+                    {selectedImageRecto ? null : (
+                      <Grid>
+                        <Typography
+                          textAlign={"center"}
+                          variant="h4"
+                          color={"#95c732"}
+                          mt={2}
+                        >
+                          UpLoad Photo
+                        </Typography>
+                        <Backup style={{ fontSize: "7vw", opacity: 0.5 }} />
+                      </Grid>
+                    )}
+
+                    <input
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      id="recto-upload"
+                      name="recto"
+                      type="file"
+                      onChange={(event) => {
+                        const file = event.currentTarget.files[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setSelectedImageRecto(reader.result);
+                          };
+                          reader.readAsDataURL(file);
+                          formik.setFieldValue("recto", file);
+                        }
+                      }}
+                    />
+
+                    <label htmlFor="recto-upload">
+                      <Button
+                        component="span"
+                        style={{ color: "#EBCC24" }}
+                        variant="outlined"
+                        startIcon={<CloudUpload />}
+                      >
+                        {selectedImageRecto ? "Changer" : "Parcourir"}
+                        <VisuallyHiddenInput type="file" />
+                      </Button>
+                    </label>
+                  </Grid>
+                </Grid>
+              </>
               <Grid
                 container
                 justifyContent={"center"}
@@ -199,8 +273,7 @@ function SingUp3() {
               >
                 <Box borderRadius={1} width={"70%"}>
                   <TextField
-                    label="Email"
-                    className={classes.textField}
+                    label="Mailaka"
                     variant="outlined"
                     color="secondary"
                     sx={{ bgcolor: "white", borderRadius: 1, zIndex: 0 }}
@@ -228,7 +301,7 @@ function SingUp3() {
               >
                 <Box borderRadius={1} width={"70%"} position={"relative"}>
                   <TextField
-                    label="Mot de passe"
+                    label="Teny miafina"
                     className={classes.textField}
                     fullWidth
                     variant="outlined"
@@ -287,7 +360,7 @@ function SingUp3() {
               >
                 <Box borderRadius={1} width={"70%"}>
                   <TextField
-                    label="Confirmation de mot de passe"
+                    label="Hamarino ny teny miafina"
                     className={classes.textField}
                     fullWidth
                     variant="outlined"
@@ -359,7 +432,7 @@ function SingUp3() {
                   // cursor: "pointer",
                 }}
               >
-                Submit
+                Handefa
               </Button>
             </form>
             <Grid container justifyContent={"center"} my={2}>
