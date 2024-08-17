@@ -80,6 +80,7 @@ export default function CrudProject() {
     e.preventDefault();
   
     const formData = new FormData();
+
     formData.append("projectId", editProject.id || '');
     formData.append("typeId", editProject.typeId);
     formData.append("userId", editProject.userId);
@@ -91,7 +92,7 @@ export default function CrudProject() {
     if (editProject.file) {
       formData.append("file", editProject.file);
     }
-  
+
     try {
       if (isCreating) {
         await createProject(formData);
@@ -106,7 +107,6 @@ export default function CrudProject() {
       console.error("Error updating or creating project:", error);
     }
   };
-  
 
   return (
     <Grid container minHeight={"90vh"} position="relative">
@@ -121,6 +121,24 @@ export default function CrudProject() {
                   type="text"
                   value={editProject.id}
                   readOnly
+                  className="border border-gray-300 p-2 rounded w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-600">Type ID</label>
+                <input
+                  type="text"
+                  value={editProject.typeId}
+                  onChange={(e) => setEditProject({ ...editProject, typeId: e.target.value })}
+                  className="border border-gray-300 p-2 rounded w-full"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-600">User ID</label>
+                <input
+                  type="text"
+                  value={editProject.userId}
+                  onChange={(e) => setEditProject({ ...editProject, userId: e.target.value })}
                   className="border border-gray-300 p-2 rounded w-full"
                 />
               </div>
@@ -200,36 +218,36 @@ export default function CrudProject() {
             <thead className="bg-main border-b border-gray-200">
               <tr>
                 <th className="px-4 py-2 text-left text-gray-600">ID</th>
+                <th className="px-4 py-2 text-left text-gray-600">Type ID</th>
+                <th className="px-4 py-2 text-left text-gray-600">User ID</th>
                 <th className="px-4 py-2 text-left text-gray-600">Status</th>
                 <th className="px-4 py-2 text-left text-gray-600">Budget</th>
                 <th className="px-4 py-2 text-left text-gray-600">Description</th>
                 <th className="px-4 py-2 text-left text-gray-600">Request Date</th>
                 <th className="px-4 py-2 text-left text-gray-600">Realisation Date</th>
                 <th className="px-4 py-2 text-left text-gray-600">Image</th>
-                <th className="px-4 py-2 text-left text-gray-600">Created At</th>
-                <th className="px-4 py-2 text-left text-gray-600">Updated At</th>
-                <th className="px-4 py-2 text-left text-gray-600"></th>
+                <th className="px-4 py-2 text-left text-gray-600">Created By</th>
+                <th className="px-4 py-2 text-left text-gray-600">Updated By</th>
+                <th className="px-4 py-2 text-left text-gray-600">Actions</th>
               </tr>
             </thead>
             <tbody>
               {projects.map((project) => (
                 <tr key={project.id}>
-                  <td className="px-4 py-2 border-b">{project.id}</td>
-                  <td className="px-4 py-2 border-b">{project.status ? "Yes" : "No"}</td>
-                  <td className="px-4 py-2 border-b">{project.budget}</td>
-                  <td className="px-4 py-2 border-b">{project.description}</td>
-                  <td className="px-4 py-2 border-b">{new Date(project.requestDate).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b">{new Date(project.realisationDate).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b">
-                    {project.file ? (
-                      <a href={`http://localhost:8086/files/${project.file}`} target="_blank" rel="noopener noreferrer">
-                        View
-                      </a>
-                    ) : "No file"}
+                  <td className="px-4 py-2 border-b border-gray-200">{project.id}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.typeId}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.userId}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.status ? 'Active' : 'Inactive'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.budget}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.description}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{new Date(project.requestDate).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{new Date(project.realisationDate).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">
+                    {project.image && <img src={project.image} alt="Project" style={{ width: 100, height: 100 }} />}
                   </td>
-                  <td className="px-4 py-2 border-b">{new Date(project.createdAt).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b">{new Date(project.updatedAt).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b">
+                  <td className="px-4 py-2 border-b border-gray-200">{project.createdBy}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">{project.updatedBy}</td>
+                  <td className="px-4 py-2 border-b border-gray-200">
                     <IconButton onClick={() => handleEdit(project)} color="primary">
                       <Edit />
                     </IconButton>
@@ -241,28 +259,29 @@ export default function CrudProject() {
               ))}
             </tbody>
           </table>
-          <div className="flex justify-between mt-4">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => setCurrentPage((prev) => prev + 1)}
-              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700"
-            >
-              Next
-            </button>
-          </div>
         </div>
-        <button
-          onClick={handleCreate}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4"
-        >
-          <Add /> Add New Project
-        </button>
+        <div className="flex justify-between mt-4">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Previous
+          </button>
+          <button
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Next
+          </button>
+        </div>
+        <div className="mt-4">
+          <button
+            onClick={handleCreate}
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Add Project
+          </button>
+        </div>
       </div>
     </Grid>
   );
