@@ -16,13 +16,16 @@ import bgImg from "../../../assets/images/BgAcceuil1.png";
 import { makeStyles } from "@mui/styles";
 import { PALETTE_COLORS } from "../../../constant/palette";
 import { Link, useNavigate } from "react-router-dom";
-import { UrlSite } from "../../../utils";
 import TosteSucces from "../../../components/common/toste/TosteSucces";
 import TosteError from "../../../components/common/toste/TosteErro";
 import { useLocalStorage } from "../../../utils/useLocalStorage";
+
+export function UrlSite(lien) {
+  return "http://localhost:8086" + "/" + lien;
+}
+
 const useStyles = makeStyles({
   textField: {
-    // width: "100%",
     "& .MuiInputBase-root": {
       height: "5vh",
       fontSize: "0.8rem", // Taille du texte
@@ -39,54 +42,27 @@ const useStyles = makeStyles({
     },
   },
 });
+
 const validationSchema = yup.object({
-  firstName: yup
-    .string("Veuillez entrer votre nom")
-    .required("Le nom est obligatoire"),
-  lastName: yup
-    .string("Veuillez entrer votre nprénom")
-    .required("Le prénom est obligatoire"),
-  netMonthlySalary: yup
-    .number("Veuillez entrer votre salaire mensuelle")
-    .required("La salaire mensuelle est obligatoire"),
-  dateDeN: yup
-    .date("Format de date invalide")
-    .required("La date de naissance est obligatoire"),
   email: yup
     .string("Veuillez entrer votre adresse e-mail")
     .email("Veuillez entrer une adresse e-mail valide")
-    .required(`'L'adresse e-mail est obligatoire'`),
+    .required("L'adresse e-mail est obligatoire"),
   password: yup
     .string("Veuillez entrer votre mot de passe")
     .min(4, "Le mot de passe doit contenir au moins 8 caractères")
     .required("Le mot de passe est obligatoire"),
-  ConfirmPassword: yup
-    .string("Veuillez confirmer votre mot de passe")
-    .oneOf(
-      [yup.ref("password"), null],
-      "Les mots de passe doivent correspondre"
-    )
-    .required("Veuillez confirmer votre mot de passe"),
 });
+
 function Login() {
-  const { setValue } = useLocalStorage("token");
   const [openSucces, setOpenSucces] = useState(false);
   const [openError, setOpenError] = useState(false);
+  const [redirecte, setRedirect] = useState(false);
   const classes = useStyles();
   const navigate = useNavigate();
+  const {setValue, value} = useLocalStorage('token');
 
   const submitFormData = async (values) => {
-    console.log("Submitting form data model");
-    const formData = new FormData();
-    formData.append("email", values.email);
-    formData.append("password", values.password);
-
-    const object = {};
-    formData.forEach((value, key) => {
-      object[key] = value;
-    });
-    console.log(JSON.stringify(object));
-
     let config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -94,35 +70,41 @@ function Login() {
       headers: {
         "Content-Type": "application/json",
       },
-      data: formData,
+      data: {
+        email: values.email,
+        password: values.password,
+      },
     };
 
     await axios
       .request(config)
       .then((response) => {
-        console.log("anaty try");
-        console.log(response);
         setValue(response.data);
-        setOpenSucces(true);
-        navigate("/");
+         console.log(value);
+         setRedirect(true)
+         setOpenSucces(true);
+        
       })
       .catch((error) => {
-        console.log("anaty catch");
-        console.error(error);
+        console.log(error);
         setOpenError(true);
       });
   };
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
+      showPassword: false,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
       submitFormData(values);
     },
   });
+  if (redirecte) {
+    navigate('/')
+  }
 
   return (
     <>
@@ -189,7 +171,7 @@ function Login() {
                 transition: ".5s ease-in-out",
               }}
             >
-              Login
+              Hiditra
             </label>
             <form onSubmit={formik.handleSubmit}>
               <Grid
@@ -263,13 +245,9 @@ function Login() {
                             edge="end"
                           >
                             {formik.values.showPassword ? (
-                              <IconButton>
-                                <Visibility fontSize="small" />
-                              </IconButton>
+                              <Visibility fontSize="small" />
                             ) : (
-                              <IconButton>
-                                <VisibilityOff fontSize="small" />
-                              </IconButton>
+                              <VisibilityOff fontSize="small" />
                             )}
                           </IconButton>
                         </InputAdornment>
@@ -288,14 +266,11 @@ function Login() {
                   display: "block",
                   color: "#fff",
                   background: PALETTE_COLORS.main,
-                  // fontSize: "1em",
                   fontWeight: "bold",
                   marginTop: 20,
-                  // outline: "none",
                   border: "none",
                   borderRadius: 5,
                   transition: ".2s ease-in",
-                  // cursor: "pointer",
                 }}
               >
                 Submit

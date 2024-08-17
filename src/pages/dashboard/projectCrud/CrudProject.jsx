@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
-import { Edit, Delete, Add } from "@mui/icons-material";
+import { Edit, Delete } from "@mui/icons-material";
 import { Grid, IconButton } from "@mui/material";
 
 const API_URL = "http://localhost:8086/projects";
@@ -87,12 +87,7 @@ export default function CrudProject() {
     e.preventDefault();
 
     const formData = new FormData();
-<<<<<<< HEAD
     formData.append("projectId", editProject.id || "");
-=======
-
-    formData.append("projectId", editProject.id || '');
->>>>>>> a04470ac7d71ae9fcf2ec2e9efdeb5e768fc8fad
     formData.append("typeId", editProject.typeId);
     formData.append("userId", editProject.userId);
     formData.append("status", editProject.status);
@@ -285,7 +280,6 @@ export default function CrudProject() {
                   Realisation Date
                 </th>
                 <th className="px-4 py-2 text-left text-gray-600">Image</th>
-<<<<<<< HEAD
                 <th className="px-4 py-2 text-left text-gray-600">
                   Created At
                 </th>
@@ -293,17 +287,11 @@ export default function CrudProject() {
                   Updated At
                 </th>
                 <th className="px-4 py-2 text-left text-gray-600"></th>
-=======
-                <th className="px-4 py-2 text-left text-gray-600">Created By</th>
-                <th className="px-4 py-2 text-left text-gray-600">Updated By</th>
-                <th className="px-4 py-2 text-left text-gray-600">Actions</th>
->>>>>>> a04470ac7d71ae9fcf2ec2e9efdeb5e768fc8fad
               </tr>
             </thead>
             <tbody>
               {projects.map((project) => (
                 <tr key={project.id}>
-<<<<<<< HEAD
                   <td className="px-4 py-2 border-b">{project.id}</td>
                   <td className="px-4 py-2 border-b">
                     {project.status ? "Yes" : "No"}
@@ -340,23 +328,6 @@ export default function CrudProject() {
                       onClick={() => handleEdit(project)}
                       color="primary"
                     >
-=======
-                  <td className="px-4 py-2 border-b border-gray-200">{project.id}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{project.typeId}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{project.userId}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{project.status ? 'Active' : 'Inactive'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{project.budget}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{project.description}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{new Date(project.requestDate).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{new Date(project.realisationDate).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">
-                    {project.image && <img src={project.image} alt="Project" style={{ width: 100, height: 100 }} />}
-                  </td>
-                  <td className="px-4 py-2 border-b border-gray-200">{project.createdBy}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">{project.updatedBy}</td>
-                  <td className="px-4 py-2 border-b border-gray-200">
-                    <IconButton onClick={() => handleEdit(project)} color="primary">
->>>>>>> a04470ac7d71ae9fcf2ec2e9efdeb5e768fc8fad
                       <Edit />
                     </IconButton>
                     <IconButton

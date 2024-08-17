@@ -20,12 +20,13 @@ function CardAnnex(props) {
       >
         <Grid
           maxHeight={"23vh"}
+          minHeight={"23vh"}
           justifyContent={"center"}
           alignContent={"center"}
           overflow={"hidden"}
           position={"relative"}
         >
-          <img src={datas.imgPath} alt="" />
+          <img src={datas.image} alt=""/>
 
           <Grid
             position={"absolute"}
@@ -36,7 +37,7 @@ function CardAnnex(props) {
           >
             <Grid px={1} bgcolor={PALETTE_COLORS.second}>
               <Typography variant="body2" fontWeight={"bold"} color={"white"}>
-                {datas.id} MGA
+                {datas.budget}
               </Typography>
             </Grid>
           </Grid>
@@ -58,7 +59,7 @@ function CardAnnex(props) {
               "alignItems": "center",
             }}
           >
-            <Link href={`${datas.owner}`}>
+            <Link to={`/${datas.id}`}>
               <Button
                 variant="text"
                 sx={{ border: "orange 2px solid", color: "orange" }}
@@ -75,32 +76,9 @@ function CardAnnex(props) {
             fontFamily={"revert-layer"}
             fontWeight={"bold"}
           >
-            {datas.owner}
+            {datas.description}
           </Typography>
-          <Grid container justifyContent={"left"} mb={1}>
-            <Typography variant="body1" fontFamily={"revert"}>
-              <span style={{ fontWeight: "bold" }}> Power :</span>150cv
-            </Typography>
-          </Grid>
-          <Grid container justifyContent={"flex-end"} pr={1} mt={-3}>
-            <Link href={`${datas.id}`}>
-              <Button
-                variant="contained"
-                color="warning"
-                sx={{
-                  bgcolor: PALETTE_COLORS.second,
-                  fontFamily: "revert-layer",
-                  fontSize: "small",
-                }}
-                size="small"
-                onClick={() => {
-                  // setOpen(true);
-                }}
-              >
-                Hijery
-              </Button>
-            </Link>
-          </Grid>
+          
         </Grid>
       </Grid>
     </>

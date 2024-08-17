@@ -22,10 +22,8 @@ function createData(name: string, value: string): Row {
 
 const TableSpec: React.FC<any> = ({ data }: any) => {
   const rows: Row[] = [
-    createData("Tetikasa", data[0].owner),
-    createData("Daty", "22/01/2025"),
-    createData("Ora", "08:00"),
-    createData("Toerana", "Anosy"),
+    createData("Tetikasa", data.type.name),
+    createData("Daty", data.realisationDate)
   ];
 
   return (

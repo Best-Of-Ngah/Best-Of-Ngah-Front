@@ -62,7 +62,7 @@ const Card = (props) => {
           <Button
             variant="contained"
             endIcon={<ArrowForwardIcon />}
-            href="#"
+            href={data.id}
             sx={{
               "backgroundColor": PALETTE_COLORS.second,
               "&:hover": {
@@ -83,6 +83,7 @@ const Card = (props) => {
 Card.propTypes = {
   data: PropTypes.shape({
     image: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     requestDate: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,

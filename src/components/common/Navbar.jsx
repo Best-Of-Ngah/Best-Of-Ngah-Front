@@ -1,14 +1,23 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import { LocalFlorist } from "@mui/icons-material";
 import { PALETTE_COLORS } from "../../constant/palette";
 import ModalApp from "./modal/ModalApp";
 import { useState } from "react";
+import ModalCreateProject from "./modal/ModalCreateProject";
 import { useLocalStorage } from "../../utils/useLocalStorage";
 function Navbar() {
-  const { value } = useLocalStorage();
+  const { value } = useLocalStorage("token");
   const [open, setOpen] = useState(false);
+  const [opentwo, setOpentwo] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const handleAcceuil = () => {
@@ -17,9 +26,12 @@ function Navbar() {
   const handleProduct = () => {
     navigate("/project");
   };
+  console.log(value);
+
   return (
     <>
       <ModalApp open={open} setOpen={setOpen} />
+      <ModalCreateProject open={opentwo} setOpen={setOpentwo} />
       <Grid
         borderTop={`${PALETTE_COLORS.main} solid 4px`}
         container
@@ -135,17 +147,18 @@ function Navbar() {
         </Stack>
         <Stack direction="row" spacing={5} alignItems={"center"}>
           <Grid bgcolor={"white"} borderRadius={2}>
-            <Link to={`/connexion`}>
-              <Button
-                fontFamily={"monospace"}
-                fontWeight={"bold"}
-                sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
-                variant="text"
-                startIcon={<PersonIcon />}
-              >
-                Anangana Tetikasa
-              </Button>
-            </Link>
+            <Button
+              fontFamily={"monospace"}
+              fontWeight={"bold"}
+              sx={{ color: PALETTE_COLORS.main, boxShadow: 5 }}
+              variant="text"
+              startIcon={<PersonIcon />}
+              onClick={() => {
+                setOpentwo(true);
+              }}
+            >
+              Anangana Tetikasa
+            </Button>
           </Grid>
           <Grid bgcolor={"white"} borderRadius={2}>
             {value == null ? (
@@ -161,7 +174,9 @@ function Navbar() {
                 </Button>
               </Link>
             ) : (
-              <PersonIcon />
+              <IconButton sx={{boxShadow:2}}>
+                <PersonIcon color="success" style={{color:PALETTE_COLORS.second}} fontSize="large"/>
+              </IconButton>
             )}
           </Grid>
         </Stack>
